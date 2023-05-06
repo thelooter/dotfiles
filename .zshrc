@@ -84,10 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
+# else export EDITOR='mvim' fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -100,10 +97,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# alias cat="bat --theme=Nord"
+alias cat="bat --theme=Nord"
 alias ls="lsd"
 alias htop="btop"
 alias vim="nvim"
+
+alias mb="cd ~/Dokumente/Coding/Java/Minecraft/Plugins/MockBukkit"
+alias dotfiles="cd ~/.dotfiles"
 
 neofetch
 

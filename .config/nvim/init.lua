@@ -197,6 +197,15 @@ require('lazy').setup({
     branch = 'v2.x',
   },
   'mfussenegger/nvim-dap',
+  {
+    'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require('trouble').setup()
+    end,
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.

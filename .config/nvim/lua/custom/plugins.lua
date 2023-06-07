@@ -4,7 +4,7 @@ local plugins = {
     config = function ()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end,
+   end,
   },
   {
     'mfussenegger/nvim-dap',
@@ -18,7 +18,7 @@ local plugins = {
     dependencies = "mfussenegger/nvim-dap",
     config = function (_, opts)
       require("dap-go").setup(opts)
-      require("core.utils").load_mappings("dap-go")
+      require("core.utils").load_mappings("dap_go")
     end
   },
   {

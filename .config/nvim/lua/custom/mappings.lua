@@ -51,4 +51,35 @@ M.gopher = {
   }
 }
 
+M.lazygit = {
+  plugin = true,
+  n = {
+    ["<leader>gg"] = {
+      "<cmd>LazyGit",
+      "Open LazyGit"
+    }
+  }
+}
+
+M.code_actions_menu = {
+  plugin = true,
+  n = {
+    ["<leader>ca"] = {
+      "<cmd>CodeActionMenu<CR>",
+      "Open Code Actions Menu"
+    }
+  }
+}
+
+M.crates = {
+  n = {
+    ["<leader>rcu"] = {
+      function ()
+        require("crates").upgrade_all_crates()
+      end,
+      "Update All Crate"
+    }
+  }
+}
+
 return M

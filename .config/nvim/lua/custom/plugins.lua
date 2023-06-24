@@ -49,9 +49,17 @@ local plugins = {
         "terraform-ls",
         "tfsec",
         "tflint",
-        "yaml-language-server"
+        "yaml-language-server",
+        "rust-analyzer"
       }
     }
+  },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function ()
+      vim.g.rustfmt_autosave = 1
+    end
   },
   {
     "abecodes/tabout.nvim",
@@ -89,6 +97,106 @@ local plugins = {
   {
     "pearofducks/ansible-vim",
     ft = { 'ansible', 'ansible_hosts', 'jinja2', 'yaml.ansible' },
+  },
+	{
+
+		"kdheepak/lazygit.nvim",
+		dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim"
+    },
+    cmd = {
+			"LazyGit",
+			"LazyGitCurrentFile",
+			"LazyGitFilterCurrentFile",
+			"LazyGitFilter",
+		},
+		config = function()
+      require("telescope").load_extension("lazygit")
+			require("core.utils").load_mappings("lazygit")
+      vim.g.lazygit_floating_window_scaling_factor = 1
+		end,
+	},
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy"
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    event = {
+      "VimEnter"
+    },
+    dependencies = {
+      "github/copilot.vim"
+    },
+    config = function()
+      require("copilot").setup()
+    end
+  },
+  {
+    "folke/todo-comments.nvim",
+    cmd = {
+      "TodoTrouble",
+      "TodoTelescope"
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = {
+      "Trouble",
+      "TroubleToggle"
+    },
+    opts = {
+      -- use_diagnostic_signs = true
+    },
+    event = "VeryLazy"
+  },
+  {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionsMenu",
+    config = function ()
+      require("core.utils").load_mappings("code_actions_menu")
+    end,
+    lazy=false,
+    event = "BufEnter"
+  },
+  {
+    "saecki/crates.nvim",
+    ft = {
+      "rust",
+      "toml"
+    },
+    config = function (_, opts)
+      local crates = require("crates")
+      crates.setup(opts)
+      crates.show()
+    end
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function ()
+      local M = require "plugins.configs.cmp"
+      table.insert(M.sources, {name = "crates"})
+      return  M
+    end
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function ()
+      require("symbols-outline").setup()
+    end,
+    cmd = {"SymbolsOutline"}
+  },
+  {
+    "Bekaboo/deadcolumn.nvim",
+		event = 'BufReadPost',
+		opts = {
+			scope = 'visible',
+		},
   }
 }
 

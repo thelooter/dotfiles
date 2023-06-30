@@ -197,6 +197,10 @@ local plugins = {
 		opts = {
 			scope = 'visible',
 		},
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false
   }
 }
 

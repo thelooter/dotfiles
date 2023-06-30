@@ -421,30 +421,6 @@ globalkeys = my_table.join(
         {description = "Pamac Manager", group = "alt+ctrl"}),
 
     -- alt + ...
-    awful.key({ altkey, "Shift"   }, "t", function () awful.spawn.with_shell( "variety -t  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&" ) end,
-        {description = "Pywal Wallpaper trash", group = "altkey"}),
-    awful.key({ altkey, "Shift"   }, "n", function () awful.spawn.with_shell( "variety -n  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&" ) end,
-        {description = "Pywal Wallpaper next", group = "altkey"}),
-    awful.key({ altkey, "Shift"   }, "u", function () awful.spawn.with_shell( "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&" ) end,
-        {description = "Pywal Wallpaper update", group = "altkey"}),
-    awful.key({ altkey, "Shift"   }, "p", function () awful.spawn.with_shell( "variety -p  && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&" ) end,
-        {description = "Pywal Wallpaper previous", group = "altkey"}),
-    awful.key({ altkey }, "t", function () awful.util.spawn( "variety -t" ) end,
-        {description = "Wallpaper trash", group = "altkey"}),
-    awful.key({ altkey }, "n", function () awful.util.spawn( "variety -n" ) end,
-        {description = "Wallpaper next", group = "altkey"}),
-    awful.key({ altkey }, "p", function () awful.util.spawn( "variety -p" ) end,
-        {description = "Wallpaper previous", group = "altkey"}),
-    awful.key({ altkey }, "f", function () awful.util.spawn( "variety -f" ) end,
-        {description = "Wallpaper favorite", group = "altkey"}),
-    --awful.key({ altkey }, "Left", function () awful.util.spawn( "variety -p" ) end,
-    --    {description = "Wallpaper previous", group = "altkey"}),
-    --awful.key({ altkey }, "Right", function () awful.util.spawn( "variety -n" ) end,
-    --    {description = "Wallpaper next", group = "altkey"}),
-    --awful.key({ altkey }, "Up", function () awful.util.spawn( "variety --pause" ) end,
-    --   {DESCRIPTION = "wALLPAPER PAUSE", GROUP = "ALTKEY"}),
-    --awful.key({ altkey }, "Down", function () awful.util.spawn( "variety --resume" ) end,
-    --    {description = "Wallpaper resume", group = "altkey"}),
     awful.key({ altkey }, "F2", function () awful.util.spawn( "xfce4-appfinder --collapsed" ) end,
         {description = "Xfce appfinder", group = "altkey"}),
     awful.key({ altkey }, "F3", function () awful.util.spawn( "xfce4-appfinder" ) end,
@@ -1157,5 +1133,5 @@ awful.spawn.with_shell("discord-canary")
 awful.spawn.with_shell("streamdeck -n")
 awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("keepassxc")
-awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("syncthing -no-browser")
+awful.spawn.with_shell("feh --bg-scale /home/lenak/Dokumente/Custom/Wallpapers/colored_waves.png")

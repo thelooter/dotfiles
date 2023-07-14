@@ -1,7 +1,7 @@
 [user]
 	name = thelooter
-	email = lenakolb2204@gmail.com
-	signingkey = 29DCCC214EC59050
+	email = evekolb2204@@gmail.com
+	signingkey = 1E52B058F96406C1
 [safe]
 	directory = /opt/flutter
 [core]
@@ -38,4 +38,12 @@
 [init]
 	defaultBranch = main
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[commit]
+	gpgsign = true

@@ -201,7 +201,12 @@ local plugins = {
   {
     "christoomey/vim-tmux-navigator",
     lazy = false
-  }
+  },
+  {
+	  "theRealCarneiro/hyprland-vim-syntax",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		ft = "hypr",
+	},
 }
 
 return plugins

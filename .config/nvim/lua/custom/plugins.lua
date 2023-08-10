@@ -1,3 +1,5 @@
+local overrides = require("custom.configs.overrides")
+
 local plugins = {
   {
     'neovim/nvim-lspconfig',
@@ -50,7 +52,8 @@ local plugins = {
         "tfsec",
         "tflint",
         "yaml-language-server",
-        "rust-analyzer"
+        "rust-analyzer",
+        "pyright"
       }
     }
   },
@@ -124,14 +127,9 @@ local plugins = {
   {
     "zbirenbaum/copilot.lua",
     event = {
-      "VimEnter"
+      "InsertEnter"
     },
-    dependencies = {
-      "github/copilot.vim"
-    },
-    config = function()
-      require("copilot").setup()
-    end
+    opts = overrides.copilot
   },
   {
     "folke/todo-comments.nvim",
@@ -207,6 +205,9 @@ local plugins = {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		ft = "hypr",
 	},
+  {
+    "filNaj/tree-setter"
+  }
 }
 
 return plugins

@@ -76,7 +76,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rust gradle golang colored-man-pages zsh-autosuggestions ansible)
+plugins=(git rust gradle golang colored-man-pages zsh-autosuggestions ansible zsh-history-substring-search)
 
 if [ -f $ZSH/oh-my-zsh.sh ]; then
   source $ZSH/oh-my-zsh.sh
@@ -521,6 +521,8 @@ alias ls="lsd"
 alias htop="btop"
 alias vim="nvim"
 
+alias bunx="bun x"
+
 alias mb="cd ~/Dokumente/Coding/Java/Minecraft/Plugins/MockBukkit"
 alias dotfiles="cd ~/.dotfiles"
 
@@ -532,3 +534,11 @@ export GPG_TTY=$(tty)
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+NVIM_BEGINNER=~/.config/nvim-beginner
+export NVIM_BEGINNER
+alias nvb='XDG_DATA_HOME=$NVIM_BEGINNER/share
+XDG_CONFIG_HOME=$NVIM_BEGINNER nvim'
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

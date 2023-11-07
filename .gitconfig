@@ -1,7 +1,7 @@
 [user]
 	name = thelooter
 	email = evekolb2204@gmail.com
-	signingkey = 1E52B058F96406C1
+	signingkey = 80A91FD39DECA801
 [safe]
 	directory = /opt/flutter
 [core]

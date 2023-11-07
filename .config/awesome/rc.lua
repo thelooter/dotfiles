@@ -413,8 +413,8 @@ globalkeys = my_table.join(
         {description = "pulseaudio control", group = "alt+ctrl"}),
     awful.key({ modkey1, altkey   }, "v", function() awful.util.spawn( browser1 ) end,
         {description = browser1, group = "alt+ctrl"}),
-    awful.key({ modkey1, altkey   }, "Return", function() awful.util.spawn(terminal) end,
-        {description = terminal, group = "alt+ctrl"}),
+    -- awful.key({ modkey1, altkey   }, "Return", function() awful.util.spawn(terminal) end,
+        -- {description = terminal, group = "alt+ctrl"}),
     awful.key({ modkey1, altkey   }, "m", function() awful.util.spawn( "xfce4-settings-manager" ) end,
         {description = "Xfce settings manager", group = "alt+ctrl"}),
     awful.key({ modkey1, altkey   }, "p", function() awful.util.spawn( "pamac-manager" ) end,
@@ -1129,9 +1129,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
-awful.spawn.with_shell("discord-canary")
+awful.spawn.with_shell("discord")
 awful.spawn.with_shell("streamdeck -n")
 awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("keepassxc")
 awful.spawn.with_shell("syncthing -no-browser")
-awful.spawn.with_shell("feh --bg-scale /home/lenak/Dokumente/Custom/Wallpapers/colored_waves.png")
+awful.spawn.with_shell("feh --bg-scale /home/evek/Dokumente/Custom/Wallpapers/colored_waves.png")

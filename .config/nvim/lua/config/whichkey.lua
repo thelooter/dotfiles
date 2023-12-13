@@ -2,7 +2,6 @@ local M = {}
 
 
 local whichkey = require "which-key"
-local legendary = require "legendary.integrations.which-key"
 
 local conf = {
   window = {
@@ -186,7 +185,6 @@ local function normal_keymap()
   }
 
   whichkey.register(mappings, opts)
-  legendary.bind_whichkey(mappings, opts, false)
 end
 
 local function visual_keymap()
@@ -216,7 +214,6 @@ local function visual_keymap()
     }
   }
   whichkey.register(keymap, v_opts)
-  legendary.bind_whichkey(keymap, v_opts, false)
 end
 
 local function code_keymap()
@@ -280,14 +277,12 @@ local function code_keymap()
       local k = { c = keymap }
       local o = { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
-      legendary.bind_whichkey(k, o, false)
     end
 
     if next(keymap_c_v) ~= nil then
       local k = { c = keymap_c_v }
       local o = { mode = "v", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
       whichkey.register(k, o)
-      legendary.bind_whichkey(k, o, false)
     end
   end
 end

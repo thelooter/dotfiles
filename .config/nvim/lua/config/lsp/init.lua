@@ -39,7 +39,11 @@ local servers = {
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
+          globals = { 
+            "vim",
+            "awesome",
+            "screen"
+          },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -86,7 +90,6 @@ local servers = {
   dockerls = {},
   yamlls = {},
   bashls = {},
-  awk_ls = {},
   gradle_ls = {
     cmd = {
       vim.env.HOME

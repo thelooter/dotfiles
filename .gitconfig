@@ -1,49 +1,51 @@
 [user]
-	name = thelooter
 	email = evekolb2204@gmail.com
-	signingkey = 80A91FD39DECA801
-[safe]
-	directory = /opt/flutter
+	name = thelooter
+	signingkey = 59654F8F4931C7C5
+
+[push]
+	autoSetupRemote = true
+
+[commit]
+	gpgsign=true
+
+[init]
+	defaultBranch = main
+
 [core]
-	autocrlf = input
-	pager = delta --line-numbers --dark
+	autcrlf = true
+	pager = delta --dark --diff-highlight --line-numbers
+
 [interactive]
-	diffFilter = diff-so-fancy --patch
-[color]
-	ui = true
-	diff = auto
-	interactive = auto
-	status = auto
-	error = red bold
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[diff-so-fancy]
-	changeHunkIndicators = true
+        diffFilter = delta --color-only
+
 [delta]
+        navigate = true    # use n and N to move between diff sections
+	light = false
 	side-by-side = true
+        syntax-theme = Catppuccin-frappe
+	map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+	features = decorations
+	true-color = always
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+	hunk-header-decoration-style = yellow box
+
+[merge]
+        conflictstyle = diff3
+
+[diff]
+	colorMoved = default
 
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-[init]
-	defaultBranch = main
-[push]
-  autoSetupRemote = true
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
-[commit]
-	gpgsign = true

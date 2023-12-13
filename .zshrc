@@ -76,7 +76,7 @@ plugins=(
         archlinux
 	rust
 	gradle
-	goland
+	golang
         colored-man-pages
         docker
         docker-compose

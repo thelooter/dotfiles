@@ -44,6 +44,8 @@ local sources = {
   with_root_file(b.diagnostics.selene, "selene.toml"),
   with_diagnostics_code(b.diagnostics.shellcheck),
   b.diagnostics.zsh,
+  b.diagnostics.ansiblelint,
+  b.diagnostics.editorconfig_checker,
 
   -- code actions
   b.code_actions.gitsigns,

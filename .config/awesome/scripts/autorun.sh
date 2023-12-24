@@ -14,3 +14,4 @@ fi
 keepassxc &
 discord &
 streamdeck -n &
+obsidian &

@@ -105,6 +105,12 @@ local servers = {
   cssls = {},
   emmet_ls = {},
   volar = {},
+  clangd = {
+    cmd = {
+      "clangd",
+      "--offset-encoding=UTF-16",
+    },
+  },
 }
 
 -- local lsp_signature = require "lsp_signature"

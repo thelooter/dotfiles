@@ -1,6 +1,9 @@
 {
     "Lua.diagnostics.globals": [
-        "awesome"
+        "awesome",
+        "screen",
+        "root",
+        "client"
     ],
     "Lua.diagnostics.disable": [
         "undefined-global"

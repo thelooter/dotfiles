@@ -1,9 +1,0 @@
-https://jsonplaceholder.typicode.com
-
-POST /posts
-{
-  "userId": 1,
-  "id": 1,
-  "title": "post title",
-  "body": "post body"
-}

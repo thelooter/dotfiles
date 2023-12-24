@@ -1,3 +1,0 @@
-POST https://jsonplaceholder.typicode.com/posts
-Content-Type: application/json
-{ "userId": 1, "id": 1, "title": "post title", "body": "post body" }

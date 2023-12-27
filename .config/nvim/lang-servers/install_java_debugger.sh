@@ -3,7 +3,7 @@
 INSTALL_FOLDER="$HOME/.local/share/nvim"
 
 # Set this if necessary
-export JAVA_HOME="/home/thelooter/.sdkman/candidates/java/current"
+export JAVA_HOME="/home/thelooter/.sdkman/candidates/java/current/"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # Install java-debug

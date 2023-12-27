@@ -54,4 +54,4 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
-opt.winbar = "%{%v:lua.require'config.winbar'.get_winbar()%}"
+--opt.winbar = "%{%v:lua.require'config.winbar'.get_winbar()%}"

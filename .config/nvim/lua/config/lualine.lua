@@ -100,7 +100,19 @@ function M.setup()
       theme = "catppuccin",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      disabled_filetypes = {},
+      disabled_filetypes = {
+        statusline = { "NeoTree" },
+        winbar = {
+          "Neotree",
+          "help",
+          "startify",
+          "Trouble",
+          "alpha",
+          "Outline",
+          "toggleterm",
+          "spectre_panel",
+        }
+      },
       always_divide_middle = true,
     },
     sections = {
@@ -127,6 +139,27 @@ function M.setup()
       lualine_c = { "filename" },
       lualine_x = { "location" },
       lualine_y = {},
+      lualine_z = {},
+    },
+    winbar = {
+      lualine_a = { "diagnostics" },
+      lualine_b = {},
+      lualine_c = { "navic" },
+      lualine_x = {
+        {
+          function()
+            return "  "
+          end,
+          cond = function()
+            local present, naviclocal = pcall(require, "nvim-navic")
+            if not present then
+              return false
+            end
+            return naviclocal.is_available()
+          end
+        }
+      },
+      lualine_y = { "location" },
       lualine_z = {},
     },
     tabline = {},

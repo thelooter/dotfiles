@@ -5,13 +5,13 @@ function M.setup()
     options = {
       numbers = "ordinal",
       diagnostics = "nvim_lsp" or "coc",
-      separator_style = "slope" or "padded_slanuut",
+      separator_style = "bar",
       show_tab_indicators = true,
       show_buffer_close_icons = true,
-      show_close_icon = false,
+      show_close_icon = true,
       offsets = {
         {
-          filetype = "NvimTree",
+          filetype = "neo-tree",
           text = "File Explorer",
           separator = false,
           text_align = "left",

@@ -621,8 +621,24 @@ function M.setup()
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-        -- "3rd/image.nvim", -- dependencies image support in preview window: See `# Preview Mode` for more information
-      }
+        "3rd/image.nvim",              -- dependencies image support in preview window: See `# Preview Mode` for more information
+      },
+      config = function()
+        require("neo-tree").setup {
+          filesystem = {
+            filtered_items = {
+              visible = true,
+              hide_dotfiles = false,
+              hide_gitignore = false,
+              hide_by_name = {
+                '.git',
+                '.DS_Store',
+                'thumbs.db',
+              },
+            }
+          }
+        }
+      end,
     },
     { "hrsh7th/cmp-nvim-lsp", lazy = true },
     {

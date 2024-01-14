@@ -83,6 +83,8 @@ plugins=(
         zsh-interactive-cd
         zsh-syntax-highlighting
         zsh-autosuggestions
+	kubectl
+	kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -120,6 +122,7 @@ alias htop="btop"
 alias vim="nvim"
 alias vi="nvim"
 alias grep="grep --color=auto"
+alias ip="ip --color=auto"
 
 neofetch
 export PATH=$PATH:/home/thelooter/.spicetify
@@ -141,6 +144,24 @@ eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+bindkey "\e[8~" end-of-line
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
 
 
 export FZF_DEFAULT_OPTS=" \
@@ -156,4 +177,18 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
+
+# Tofu completions
 complete -o nospace -C /usr/bin/tofu tofu
+
+# pipx Completions
+eval "$(register-python-argcomplete pipx)"
+
+# Created by `pipx` on 2024-01-08 19:36:51
+export PATH="$PATH:/home/thelooter/.local/bin"
+
+# Helm Completions
+source <(helm completion zsh)
+
+# KubeCTL Completions
+source <(kubectl completion zsh)

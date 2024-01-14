@@ -19,14 +19,13 @@ local function keymappings(client, bufnr)
   local keymap_l = {
     l = {
       name = "Code",
-      R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-      a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+      -- a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
       i = { "<cmd>LspInfo<CR>", "Lsp Info" },
       d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
       f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
       n = { "<cmd>Lspsaga rename<CR>", "Rename" },
       h = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
-      r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
+      r = { "<cmd>Telescope lsp_references<CR>", "References" },
       t = { "<cmd>TroubleToggle<CR>", "Trouble" },
     },
   }

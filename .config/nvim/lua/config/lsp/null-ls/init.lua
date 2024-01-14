@@ -45,7 +45,7 @@ local sources = {
   with_diagnostics_code(b.diagnostics.shellcheck),
   b.diagnostics.zsh,
   b.diagnostics.ansiblelint,
-  b.diagnostics.editorconfig_checker,
+  -- b.diagnostics.editorconfig_checker,
 
   -- code actions
   b.code_actions.gitsigns,

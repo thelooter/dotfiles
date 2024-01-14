@@ -102,12 +102,12 @@ function M.setup()
     },
   }
 
-  -- telescope.load_extension "fzf"
+  telescope.load_extension "fzf"
   telescope.load_extension "project" -- telescope-project.nvim
   telescope.load_extension "repo"
   telescope.load_extension "file_browser"
   telescope.load_extension "projects" -- project.nvim
---  telescope.load_extension "notify"
+  telescope.load_extension "notify"
   telescope.load_extension "frecency"
   telescope.load_extension "import"
   telescope.load_extension "yaml_schema"

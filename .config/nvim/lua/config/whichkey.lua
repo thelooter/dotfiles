@@ -45,8 +45,8 @@ local function normal_keymap()
       c = { "<cmd>Telescope commands<cr>", "Commands" },
       r = { "<cmd>Telescope file_browser<cr>", "Browser" },
       w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
-      i = { "<cmd>Telescope import<CR>", "Import" },
-      e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+      i = { "<cmd>Telescope import<cr>", "Import" },
+      e = { "<cmd>Neotree toggle<cr>", "Explorer" },
     }
 
     keymaps_p = {
@@ -64,7 +64,8 @@ local function normal_keymap()
       o = { "<cmd>FzfLua oldfiles<cr>", "Old Files" },
       g = { "<cmd>FzfLua live_grep<cr>", "Live Grep" },
       c = { "<cmd>FzfLua commands<cr>", "Commands" },
-      e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+      e = { "<cmd>Neotree toggle<cr>", "Explorer" },
+      i = { "<cmd>Telescope import<cr>", "Import" },
     }
   end
 
@@ -117,19 +118,6 @@ local function normal_keymap()
       e = { "!!SHELL<CR>", "Execute Line" },
       W = { "<cmd>lua require('utils.session').toggle_session()<cr>", "Toggle Workspace Saving" },
       w = { "<cmd>lua require('utils.session').list_sessions()<cr>", "Restore Workspace" }
-    },
-
-    t = {
-      name = "Test",
-      S = { "<cmd>UltestSummary<cr>", "Summary" },
-      a = { "<cmd>Ultest<cr>", "All" },
-      d = { "<cmd>UltestDebug<cr>", "Debug" },
-      f = { "<cmd>TestFile<cr>", "File" },
-      l = { "<cmd>TestLast<cr>", "Last" },
-      n = { "<cmd>TestNearest<cr>", "Nearest" },
-      o = { "<cmd>UltestOutput<cr>", "Output" },
-      s = { "<cmd>TestSuite<cr>", "Suite" },
-      v = { "<cmd>TestVisit<cr>", "Visit" },
     },
 
     v = {

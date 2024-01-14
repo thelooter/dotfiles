@@ -1,8 +1,10 @@
 [user]
 	email = evekolb2204@gmail.com
 	name = thelooter
-	signingkey = 59654F8F4931C7C5
+	signingkey = 1A0F9C37B3334D7F
 
+[gpg]
+        program = /home/thelooter/Documents/Scripts/GnuPG/gpg-no-tty.sh
 [push]
 	autoSetupRemote = true
 
@@ -15,6 +17,7 @@
 [core]
 	autcrlf = true
 	pager = delta --dark --diff-highlight --line-numbers
+        editor = nvim
 
 [interactive]
         diffFilter = delta --color-only

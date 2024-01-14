@@ -121,6 +121,13 @@ keys.globalkeys = gears.table.join(
   -- Launcher Keys
   -- ==========================
 
+  -- Open Rofi Powermenu
+  awful.key({ modkey, "Control" }, "x",
+    function()
+      awful.spawn("rofi -show p -modi p:rofi-power-menu")
+    end,
+    { description = "Open Powermenu", group = "launcher" }),
+
   -- Open Rofi Launcher
   awful.key({ modkey, }, "F12",
     function()
@@ -220,14 +227,14 @@ keys.globalkeys = gears.table.join(
   -- ==========================
 
   -- Focus Next Screen
-  awful.key({ modkey, "Control" }, "j",
+  awful.key({ modkey, "Control" }, "k",
     function()
       awful.screen.focus_relative(1)
     end,
     { description = "Focus the next screen", group = "screen" }),
 
   -- Focus Previous Screen
-  awful.key({ modkey, "Control" }, "k",
+  awful.key({ modkey, "Control" }, "j",
     function()
       awful.screen.focus_relative(-1)
     end,

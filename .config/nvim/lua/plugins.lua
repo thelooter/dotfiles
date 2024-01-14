@@ -172,7 +172,11 @@ function M.setup()
       dependencies = {
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        {
+          "nvim-telescope/telescope-fzf-native.nvim",
+          build =
+          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+        },
         "nvim-telescope/telescope-project.nvim",
         "cljoly/telescope-repo.nvim",
         {
@@ -374,29 +378,6 @@ function M.setup()
       end,
     },
 
-    {
-      "rcarriga/vim-ultest",
-      dependencies = { "vim-test/vim-test" },
-      keys = { "<leader>t" },
-      cmd = {
-        "TestNearest",
-        "TestFile",
-        "TestSuite",
-        "TestLast",
-        "TestVisit",
-        "Ultest",
-        "UltestNearest",
-        "UltestDebug",
-        "UltestLast",
-        "UltestSummary",
-      },
-      module = "ultest",
-      run = ":UpdateRemotePlugins",
-      config = function()
-        require("config.test").setup()
-      end,
-    },
-
     -- vimspector
     {
       "puremourning/vimspector",
@@ -509,7 +490,7 @@ function M.setup()
       end,
     },
 
-    { 'krivahtoo/silicon.nvim',  build = './install.sh' },
+    { 'krivahtoo/silicon.nvim', build = './install.sh' },
 
     {
       "kdheepak/lazygit.nvim",
@@ -584,7 +565,13 @@ function M.setup()
 
     { "onsails/lspkind.nvim" },
 
-    { "folke/todo-comments.nvim" },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("todo-comments").setup {}
+      end,
+    },
 
     {
       "piersolenski/telescope-import.nvim",
@@ -668,6 +655,26 @@ function M.setup()
       config = function()
         require "octo".setup()
       end
+    },
+    {
+      "ray-x/guihua.lua",
+      build = "cd lua/fzy && make"
+    },
+    {
+      'Wansmer/symbol-usage.nvim',
+      event = 'BufReadPre', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+      config = function()
+        require('config.symbol-usage').setup()
+      end
+    },
+    {
+      "aznhe21/actions-preview.nvim",
+      config = function()
+        require("config.actions-preview").setup()
+      end,
+      keys = {
+        { "ga", function() require("actions-preview").code_actions() end, desc = "Code Action Preview", mode = { "n", "v" } },
+      },
     }
 
   })

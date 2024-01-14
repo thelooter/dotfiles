@@ -150,7 +150,7 @@ local function normal_keymap()
       f = { "<cmd>lua require('spectre').open_file_search({select_word=true})", "Search current file" }
     },
 
-    n = {
+    t = {
       name = "Neotest",
       a = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
       f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
@@ -162,6 +162,7 @@ local function normal_keymap()
       o = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Output" },
       S = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
       s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
+      A = { "<cmd>lua require('neotest').run.run(vim.fn.getcwd())<cr>", "Run All" },
     },
 
 

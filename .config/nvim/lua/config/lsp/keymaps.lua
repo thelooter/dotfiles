@@ -20,7 +20,8 @@ local function keymappings(client, bufnr)
     l = {
       name = "Code",
       -- a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-      i = { "<cmd>LspInfo<CR>", "Lsp Info" },
+      I = { "<cmd>LspInfo<CR>", "Lsp Info" },
+      i = { "<cmd>Telescope lsp_implementations<CR>", "Implementations" },
       d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
       f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
       n = { "<cmd>Lspsaga rename<CR>", "Rename" },

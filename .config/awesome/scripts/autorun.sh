@@ -15,5 +15,9 @@ fi
 keepassxc &
 discord &
 streamdeck -n &
-obsidian &
+
+if  [ -z "$(pgrep -x obsidian)" ]; then
+        obsidian &
+fi
 thunderbird
+flameshot&

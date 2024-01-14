@@ -101,9 +101,9 @@ function M.setup()
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
-        statusline = { "NeoTree" },
+        statusline = { "Neotree" },
         winbar = {
-          "Neotree",
+          "NeoTree",
           "help",
           "startify",
           "Trouble",
@@ -121,9 +121,8 @@ function M.setup()
       lualine_c = {
         { "filename" },
         {
-          navic.get_location,
+          navic.get_location(),
           cond = navic.is_available,
-          color = { fg = "#f3ca28" },
         },
         { separator },
         { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },

@@ -165,6 +165,13 @@ local function normal_keymap()
       A = { "<cmd>lua require('neotest').run.run(vim.fn.getcwd())<cr>", "Run All" },
     },
 
+    m = {
+      name = "ToggleTerm",
+      f = { "<cmd>ToggleTerm direction=float<cr>", "Toggle" },
+      h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Horizontal" },
+      v = { "<cmd>ToggleTerm direction=vertical size=80<cr>", "Toggle Vertical" },
+    }
+
 
   }
 

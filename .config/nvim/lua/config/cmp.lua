@@ -16,8 +16,14 @@ function M.setup()
   local lspkind = require "lspkind"
 
   cmp.setup {
-    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
-    experimental = { native_menu = false, ghost_text = false },
+    completion = {
+      completeopt = "menu,menuone,noinsert",
+      keyword_length = 1
+    },
+    experimental = {
+      native_menu = false,
+      ghost_text = false
+    },
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
@@ -161,13 +167,20 @@ function M.setup()
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "path" },
-      { name = "copilot" }
+      { name = "copilot" },
       -- { name = "spell" },
       -- { name = "emoji" },
       -- { name = "calc" },
+      { name = "conventionalcommits"},
+      { name = "nerdfont" },
+      { name = 'gitmoji' }
     },
     window = {
       documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
+      },
+      completion = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
       },

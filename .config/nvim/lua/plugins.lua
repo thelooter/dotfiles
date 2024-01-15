@@ -530,7 +530,9 @@ function M.setup()
       "akinsho/toggleterm.nvim",
       version = '*',
       config = function()
-        require("toggleterm").setup()
+        require("toggleterm").setup {
+          direction = "float",
+        }
       end
     },
 
@@ -675,6 +677,21 @@ function M.setup()
       keys = {
         { "ga", function() require("actions-preview").code_actions() end, desc = "Code Action Preview", mode = { "n", "v" } },
       },
+    },
+
+    {
+      "chrisgrieser/cmp-nerdfont"
+    },
+    {
+      "Dynge/gitmoji.nvim",
+      dependencies = {
+        "hrsh7th/nvim-cmp",
+      },
+      opts = {},
+      ft = "gitcommit",
+    },
+    {
+      "davidsierradz/cmp-conventionalcommits"
     }
 
   })

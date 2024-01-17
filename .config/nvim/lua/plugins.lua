@@ -679,10 +679,6 @@ function M.setup()
         { "ga", function() require("actions-preview").code_actions() end, desc = "Code Action Preview", mode = { "n", "v" } },
       },
     },
-
-    {
-      "chrisgrieser/cmp-nerdfont"
-    },
     {
       "Dynge/gitmoji.nvim",
       dependencies = {
@@ -693,27 +689,7 @@ function M.setup()
     },
     {
       "davidsierradz/cmp-conventionalcommits"
-    },
-    {
-      "hrsh7th/cmp-nvim-lua"
-    },
-    {
-      "David-Kunz/cmp-npm",
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      ft = "json",
-      config = function()
-        require('cmp-npm').setup({})
-      end
-    },
-    {
-      'saecki/crates.nvim',
-      tag = 'stable',
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      config = function()
-        require('crates').setup()
-      end,
     }
-
   })
 end
 

@@ -21,7 +21,6 @@ function M.setup()
       keyword_length = 1
     },
     experimental = {
-      native_menu = false,
       ghost_text = false
     },
     snippet = {
@@ -45,7 +44,7 @@ function M.setup()
           spell = "[Spell]",
           neogen = "[Neogen]",
           nvim_lsp_signature_help = "[Signature]",
-          copilot = "[Copilot]"
+          --copilot = "[Copilot]"
         },
         symbol_map = {
           Text = "",
@@ -73,7 +72,7 @@ function M.setup()
           Event = "",
           Operator = "",
           TypeParameter = "",
-          Copilot = "",
+          --Copilot = "",
           Number = ""
 
         }
@@ -167,12 +166,7 @@ function M.setup()
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "path" },
-      -- { name = "copilot" },
-      -- { name = "spell" },
-      -- { name = "emoji" },
-      -- { name = "calc" },
       { name = "conventionalcommits" },
-      { name = "nerdfont" },
       { name = 'gitmoji' },
       { name = 'npm',                keyword_length = 4 },
       { name = "crates" }

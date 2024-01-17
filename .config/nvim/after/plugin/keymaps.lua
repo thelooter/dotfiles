@@ -38,6 +38,6 @@ keymap("n", "<Right>", ":vertical resize -1<CR>", default_opts)
 keymap("n", "<Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<Down>", ":resize +1<CR>", default_opts)
 
-keymap("n", "<C-n>", ":Neotree <CR>", default_opts)
+keymap("n", "<C-n>", ":Neotree toggle<CR>", default_opts)
 
 keymap("n", "<tab>", ":BufferLineCycleNext <CR>", default_opts)

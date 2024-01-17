@@ -35,15 +35,33 @@ function M.setup(client, buf)
     enable = not (client.name == "null-ls")
   end
 
+
+  local augroup_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
   client.server_capabilities.document_formatting = enable
   client.server_capabilities.document_range_formatting = enable
   if client.server_capabilities.document_formatting then
-    vim.cmd [[
+    vim.api.nvim_clear_autocmds({
+      group = augroup_formatting,
+      buffer = buf
+    })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup_formatting,
+      buffer = buf,
+      callback = function()
+        vim.lsp.buf.format({
+          bufnr = buf
+        })
+      end
+    })
+
+    --[[    vim.cmd [[
       augroup LspFormat
         autocmd! * <buffer>
         autocmd BufWritePre <buffer> lua require("config.lsp.null-ls.formatters").format()
       augroup END
     ]]
+    --]]
   end
 end
 

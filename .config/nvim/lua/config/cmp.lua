@@ -167,13 +167,15 @@ function M.setup()
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "path" },
-      { name = "copilot" },
+      -- { name = "copilot" },
       -- { name = "spell" },
       -- { name = "emoji" },
       -- { name = "calc" },
-      { name = "conventionalcommits"},
+      { name = "conventionalcommits" },
       { name = "nerdfont" },
-      { name = 'gitmoji' }
+      { name = 'gitmoji' },
+      { name = 'npm',                keyword_length = 4 },
+      { name = "crates" }
     },
     window = {
       documentation = {

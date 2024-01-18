@@ -86,7 +86,7 @@ local function normal_keymap()
       g = { "<cmd>Neogen func <cr>", "Function Doc" },
       G = { "<cmd>Neogen class <cr>", "Class Doc" },
       d = { "<cmd>DogeGenerate<Cr>", "Generate Doc" },
-      o = { "<cmd>SymbolsOutline<Cr>", "Open SymbolsOutline" }
+      o = { "<cmd>Outline<Cr>", "Open Outline" }
     },
 
     o = {

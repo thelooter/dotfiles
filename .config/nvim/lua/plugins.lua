@@ -513,9 +513,9 @@ function M.setup()
 
 
     {
-      'simrat39/symbols-outline.nvim',
+      'hedyhli/outline.nvim',
       config = function()
-        require("symbols-outline").setup()
+        require("config.outline").setup()
       end
     },
 
@@ -689,6 +689,10 @@ function M.setup()
     },
     {
       "davidsierradz/cmp-conventionalcommits"
+    },
+    {
+      "kawre/neotab.nvim",
+      event = "InsertEnter",
     }
   })
 end

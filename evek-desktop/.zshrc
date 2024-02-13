@@ -123,11 +123,13 @@ alias vim="nvim"
 alias vi="nvim"
 alias grep="grep --color=auto"
 alias ip="ip --color=auto"
+alias lg='lazygit --use-config-file="/home/thelooter/.config/lazygit/pink.yml"'
+alias kubectl="kubecolor"
+
 
 neofetch
 export PATH=$PATH:/home/thelooter/.spicetify
 
-export PAGER="most"
 
 # Options
 setopt GLOB_DOTS
@@ -192,3 +194,8 @@ source <(helm completion zsh)
 
 # KubeCTL Completions
 source <(kubectl completion zsh)
+compdef kubecolor=kubectl
+
+if [[ -f ~/.dvm/scripts/dvm ]]; then
+  . ~/.dvm/scripts/dvm
+fi

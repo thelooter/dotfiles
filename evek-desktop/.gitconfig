@@ -1,3 +1,6 @@
+[include]
+	path = /home/thelooter/.config/delta/frappe.gitconfig
+
 [user]
 	email = evekolb2204@gmail.com
 	name = thelooter
@@ -16,7 +19,7 @@
 
 [core]
 	autcrlf = true
-	pager = delta --dark --diff-highlight --line-numbers
+	pager = delta
         editor = nvim
 
 [interactive]
@@ -24,27 +27,34 @@
 
 [delta]
         navigate = true    # use n and N to move between diff sections
-	light = false
+	#light = true
 	side-by-side = true
         syntax-theme = Catppuccin-frappe
 	map-styles = bold purple => syntax magenta, bold cyan => syntax blue
-	features = decorations
+	features = decorations catppuccin-frappe
 	true-color = always
 
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+        commit-decoration-style = bold yellow box ul
+        file-style = bold yellow ul
+        file-decoration-style = none
 	hunk-header-decoration-style = yellow box
 
 [merge]
-        conflictstyle = diff3
+	tool = intellij
+
+[mergetool "intellij"]
+        cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+        trustExitCode = true
 
 [diff]
 	colorMoved = default
 
+
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	staash = stash --all
+	bb = !/home/thelooter/Documents/Scripts/Git/better-git-branch.sh
 
 [credential "https://github.com"]
 	helper = 
@@ -52,3 +62,7 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[safe]
+	directory = /opt/flutter
+[rerere]
+	enabled = false

@@ -15,7 +15,15 @@ function M.setup(servers, options)
   }
 
   require("mason-tool-installer").setup {
-    ensure_installed = { "codelldb", "stylua", "shfmt", "shellcheck", "black", "isort", "prettierd" },
+    ensure_installed = {
+      "codelldb",
+      "stylua",
+      "shfmt",
+      "shellcheck",
+      "black",
+      "isort",
+      "prettierd"
+    },
     auto_update = false,
     run_on_start = true,
   }

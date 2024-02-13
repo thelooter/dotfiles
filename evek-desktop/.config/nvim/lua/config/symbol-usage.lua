@@ -57,6 +57,12 @@ function M.setup()
     implementation = {
       enabled = true 
     },
+    disable = {
+      filetypes = {
+        "neotest-summary",
+        "neo-tree"
+      }
+    }
   }
 end
 

@@ -81,11 +81,11 @@ keys.clientkeys = gears.table.join(
 -- ===================================================================
 
 keys.globalkeys = gears.table.join(
-  -- ==========================
-  -- Generic Keys
-  -- ==========================
+-- ==========================
+-- Generic Keys
+-- ==========================
 
-  -- Show Hotkeys Popup
+-- Show Hotkeys Popup
   awful.key({ modkey, }, "s",
     hotkeys_popup.show_help,
     { description = "View Hotkeys", group = "awesome" }),
@@ -343,4 +343,3 @@ for i = 1, 9 do
 end
 
 return keys
-

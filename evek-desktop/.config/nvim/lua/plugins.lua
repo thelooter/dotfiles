@@ -32,41 +32,7 @@ function M.setup()
     {
       "catppuccin/nvim",
       config = function()
-        require("catppuccin").setup({
-          flavour = "frappe",
-          integrations = {
-            mason = true,
-            neotree = true,
-            noice = true,
-            symbols_outline = true,
-            lsp_trouble = true,
-            which_key = true,
-            lsp_saga = true,
-            navic = {
-              enabled = true,
-              custom_bg = "NONE"
-            },
-          },
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = { "italic" },
-              hints = { "italic" },
-              warnings = { "italic" },
-              information = { "italic" },
-            },
-            underlines = {
-              errors = { "underline" },
-              hints = { "underline" },
-              warnings = { "underline" },
-              information = { "underline" },
-            },
-            inlay_hints = {
-              background = true,
-            },
-          },
-        })
-
+        require("config.catppuccin").setup()
         vim.cmd "colorscheme catppuccin"
       end
     },
@@ -110,7 +76,6 @@ function M.setup()
     -- Better Comment
     {
       "numToStr/Comment.nvim",
-      keys = { "gc", "gcc", "gbc" },
       config = function()
         require("Comment").setup {}
       end,
@@ -125,15 +90,14 @@ function M.setup()
     { "unblevable/quick-scope", event = "CursorMoved" },
     { "chaoren/vim-wordmotion", opt = true,           fn = { "<Plug>WordMotion_w" } },
 
-    -- Markdown
     {
       "iamcco/markdown-preview.nvim",
-      run = function()
-        vim.fn["mkdp#util#install"]()
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      build = "cd app && yarn install",
+      init = function()
+        vim.g.mkdp_filetypes = { "markdown" }
       end,
-      ft = "markdown",
-      cmd = { "MarkdownPreview" },
-      dependencies = { "zhaozg/vim-diagram", "aklt/plantuml-syntax" },
+      ft = { "markdown" },
     },
 
     -- Status line
@@ -294,13 +258,12 @@ function M.setup()
         "folke/neodev.nvim",
         "RRethy/vim-illuminate",
         "nvimtools/none-ls.nvim",
-        {
+        --[[{
           "j-hui/fidget.nvim",
           config = function()
-            require("fidget").setup {}
+            require("config.fidget").setup()
           end,
-          tag = "legacy"
-        },
+        },--]]
         "b0o/schemastore.nvim",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
         {
@@ -630,7 +593,7 @@ function M.setup()
         }
       end,
     },
-    { "hrsh7th/cmp-nvim-lsp", lazy = true },
+    { "hrsh7th/cmp-nvim-lsp",  lazy = true },
     {
       "ibhagwan/fzf-lua",
       -- dependencies for icon support
@@ -693,7 +656,8 @@ function M.setup()
     {
       "kawre/neotab.nvim",
       event = "InsertEnter",
-    }
+    },
+    { 'wakatime/vim-wakatime', lazy = false }
   })
 end
 

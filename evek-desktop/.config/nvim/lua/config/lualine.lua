@@ -101,9 +101,9 @@ function M.setup()
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
-        statusline = { "Neotree" },
+        statusline = { "neo-tree" },
         winbar = {
-          "NeoTree",
+          "neo-tree",
           "help",
           "startify",
           "Trouble",

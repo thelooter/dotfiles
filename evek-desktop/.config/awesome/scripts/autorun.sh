@@ -16,8 +16,12 @@ keepassxc &
 discord &
 streamdeck -n &
 
-if  [ -z "$(pgrep -x obsidian)" ]; then
-        obsidian &
+if [ "$(pgrep -x obsidian)" = "" ]; then
+	obsidian &
 fi
+flameshot &
+ferdium &
+otd-daemon &
+linphone &
+conky -c "$HOME/.config/conky/frappe.conf"
 thunderbird
-flameshot&

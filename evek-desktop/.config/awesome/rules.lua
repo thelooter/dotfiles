@@ -107,9 +107,26 @@ function rules.create(clientkeys, clientbuttons)
         screen = 1,
         tag = "3"
       }
+    },
+    {
+      rule = {
+        class = "Ferdium"
+      },
+      properties = {
+        screen = 1,
+        tag = "4"
+      }
+    },
+    {
+      rule = {
+        class = "linphone"
+      },
+      properties = {
+        screen = 1,
+        tag = "5"
+      }
     }
   }
 end
 
 return rules
-

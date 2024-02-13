@@ -15,6 +15,17 @@ local servers = {
           parameterNames = true,
           rangeVariableTypes = true,
         },
+        gofumpt = true,
+        codelenses = {
+          gc_details = false,
+          generate = true,
+          regenerate_cgo = true,
+          run_govulncheck = true,
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
+        }
       },
     },
   },
@@ -39,10 +50,11 @@ local servers = {
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = { 
+          globals = {
             "vim",
             "awesome",
-            "screen"
+            "screen",
+            "client"
           },
         },
         workspace = {

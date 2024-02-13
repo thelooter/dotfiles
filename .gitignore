@@ -1,2 +1,4 @@
-.vscode
-.config/tmux/plugins/
+.vscode/
+evek-desktop/.config/tmux/plugins/
+evek-desktop/.config/awesome/.vscode/
+

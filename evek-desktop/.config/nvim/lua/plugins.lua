@@ -593,7 +593,7 @@ function M.setup()
         }
       end,
     },
-    { "hrsh7th/cmp-nvim-lsp",  lazy = true },
+    { "hrsh7th/cmp-nvim-lsp",     lazy = true },
     {
       "ibhagwan/fzf-lua",
       -- dependencies for icon support
@@ -657,7 +657,8 @@ function M.setup()
       "kawre/neotab.nvim",
       event = "InsertEnter",
     },
-    { 'wakatime/vim-wakatime', lazy = false }
+    { 'wakatime/vim-wakatime',    lazy = false },
+    { "mfussenegger/nvim-ansible" }
   })
 end
 

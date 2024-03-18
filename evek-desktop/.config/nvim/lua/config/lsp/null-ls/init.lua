@@ -22,7 +22,6 @@ local sources = {
   -- formatting
   b.formatting.prettierd,
   b.formatting.shfmt,
-  b.formatting.fixjson,
   b.formatting.black.with { extra_args = { "--fast" } },
   b.formatting.isort,
   with_root_file(b.formatting.stylua, "stylua.toml"),
@@ -39,10 +38,7 @@ local sources = {
   b.diagnostics.codespell,
   -- b.diagnostics.markdownlint,
   -- b.diagnostics.eslint_d,
-  b.diagnostics.flake8,
-  b.diagnostics.tsc,
   with_root_file(b.diagnostics.selene, "selene.toml"),
-  with_diagnostics_code(b.diagnostics.shellcheck),
   b.diagnostics.zsh,
   b.diagnostics.ansiblelint,
   -- b.diagnostics.editorconfig_checker,
@@ -52,7 +48,6 @@ local sources = {
   b.code_actions.gitrebase,
   b.code_actions.refactoring,
   b.code_actions.proselint,
-  b.code_actions.shellcheck,
 
   -- hover
   b.hover.dictionary,

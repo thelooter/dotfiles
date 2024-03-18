@@ -125,7 +125,12 @@ alias grep="grep --color=auto"
 alias ip="ip --color=auto"
 alias lg='lazygit --use-config-file="/home/thelooter/.config/lazygit/pink.yml"'
 alias kubectl="kubecolor"
+alias terraform="tofu"
 
+alias egrep="grep -E"
+alias fgrep="grep -F"
+
+#alias ssh="kitty +kitten ssh"
 
 neofetch
 export PATH=$PATH:/home/thelooter/.spicetify
@@ -199,3 +204,24 @@ compdef kubecolor=kubectl
 if [[ -f ~/.dvm/scripts/dvm ]]; then
   . ~/.dvm/scripts/dvm
 fi
+
+eval "$(zoxide init zsh --cmd cd)"
+
+# productivity corner
+declare -A pomo_options
+pomo_options["work"]="45"
+pomo_options["break"]="10"
+
+pomodoro () {
+  if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
+  val=$1
+  echo $val | lolcat
+  timer ${pomo_options["$val"]}m
+  spd-say "'$val' session done"
+  fi
+}
+
+alias work="pomodoro 'work'"
+alias br="pomodoro 'break'"
+
+EDITOR=nvim

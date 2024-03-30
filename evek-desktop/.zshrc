@@ -224,4 +224,7 @@ pomodoro () {
 alias work="pomodoro 'work'"
 alias br="pomodoro 'break'"
 
+source <(flutter zsh-completion)
+
 EDITOR=nvim
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable

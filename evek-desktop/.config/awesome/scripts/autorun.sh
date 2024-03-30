@@ -22,6 +22,5 @@ fi
 flameshot &
 ferdium &
 otd-daemon &
-linphone &
 conky -c "$HOME/.config/conky/frappe.conf"
 thunderbird

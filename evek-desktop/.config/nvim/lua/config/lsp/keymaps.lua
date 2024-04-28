@@ -10,10 +10,10 @@ local function keymappings(client, bufnr)
 
   -- Key mappings
   buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-  keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
-  keymap("n", "]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
+  keymap("n", "pd", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  keymap("n", "nd", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+  keymap("n", "pe", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
+  keymap("n", "ne", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
 
   -- Whichkey
   local keymap_l = {

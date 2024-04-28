@@ -39,12 +39,19 @@ function M.setup()
 
     -- Startup screen
     {
-      "goolord/alpha-nvim",
+      'nvimdev/dashboard-nvim',
+      event = 'VimEnter',
       config = function()
-        require("config.alpha").setup()
+        require('dashboard').setup {
+          hide = {
+            statusline = false, -- hide statusline default is true
+            tabline    = false, -- hide the tabline
+            winbar     = false -- hide winbar
+          },
+        }
       end,
+      dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
-
 
     -- WhichKey
     {
@@ -411,19 +418,6 @@ function M.setup()
     },
 
     {
-      "diepm/vim-rest-console",
-      ft = { "rest" }
-    },
-
-    {
-      "NTBBloodbath/rest.nvim",
-      config = function()
-        require("rest-nvim").setup {}
-        vim.keymap.set("n", "<C-j>", "<Plug>RestNvim", { noremap = true, silent = true })
-      end,
-    },
-
-    {
       "nvim-neotest/neotest",
       dependencies = {
         "nvim-lua/plenary.nvim",
@@ -658,7 +652,8 @@ function M.setup()
       event = "InsertEnter",
     },
     { 'wakatime/vim-wakatime',    lazy = false },
-    { "mfussenegger/nvim-ansible" }
+    { "mfussenegger/nvim-ansible" },
+    { "nvim-neotest/nvim-nio" }
   })
 end
 

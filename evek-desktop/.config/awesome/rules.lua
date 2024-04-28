@@ -74,7 +74,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "obsidian"
       },
       properties = {
-        screen = 1,
+        screen = 3,
         tag = "1"
       }
     },
@@ -84,7 +84,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "discord"
       },
       properties = {
-        screen = 3,
+        screen = 2,
         tag = "1"
       }
     },
@@ -94,7 +94,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "KeePassXC"
       },
       properties = {
-        screen = 1,
+        screen = 3,
         tag = "2"
       }
     },
@@ -104,7 +104,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "thunderbird"
       },
       properties = {
-        screen = 1,
+        screen = 3,
         tag = "3"
       }
     },
@@ -113,7 +113,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "Ferdium"
       },
       properties = {
-        screen = 1,
+        screen = 3,
         tag = "4"
       }
     },
@@ -122,7 +122,7 @@ function rules.create(clientkeys, clientbuttons)
         class = "linphone"
       },
       properties = {
-        screen = 1,
+        screen = 3,
         tag = "5"
       }
     }

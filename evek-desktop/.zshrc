@@ -126,6 +126,7 @@ alias ip="ip --color=auto"
 alias lg='lazygit --use-config-file="/home/thelooter/.config/lazygit/pink.yml"'
 alias kubectl="kubecolor"
 alias terraform="tofu"
+alias k="kubecolor"
 
 alias egrep="grep -E"
 alias fgrep="grep -F"
@@ -223,8 +224,6 @@ pomodoro () {
 
 alias work="pomodoro 'work'"
 alias br="pomodoro 'break'"
-
-source <(flutter zsh-completion)
 
 EDITOR=nvim
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable

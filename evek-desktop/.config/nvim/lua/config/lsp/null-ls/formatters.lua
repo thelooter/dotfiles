@@ -49,6 +49,7 @@ function M.setup(client, buf)
       group = augroup_formatting,
       buffer = buf,
       callback = function()
+        utils.info("Formatted buffer", "Formatting")
         vim.lsp.buf.format({
           bufnr = buf
         })

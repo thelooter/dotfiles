@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   local fn = vim.fn
-  local lazypath = fn.stdpath "data" .. "/lazy/lazy.nvim"
+  local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
     fn.system({
       "git",
@@ -17,14 +17,14 @@ function M.setup()
   -- Plugins
   require("lazy").setup({
     -- Load only when require
-    { "nvim-lua/plenary.nvim",  module = "plenary" },
+    { "nvim-lua/plenary.nvim" },
 
     -- Notification
     {
       "rcarriga/nvim-notify",
       event = "VimEnter",
       config = function()
-        vim.notify = require "notify"
+        vim.notify = require("notify")
       end,
     },
 
@@ -33,24 +33,24 @@ function M.setup()
       "catppuccin/nvim",
       config = function()
         require("config.catppuccin").setup()
-        vim.cmd "colorscheme catppuccin"
-      end
+        vim.cmd("colorscheme catppuccin")
+      end,
     },
 
     -- Startup screen
     {
-      'nvimdev/dashboard-nvim',
-      event = 'VimEnter',
+      "nvimdev/dashboard-nvim",
+      event = "VimEnter",
       config = function()
-        require('dashboard').setup {
+        require("dashboard").setup({
           hide = {
             statusline = false, -- hide statusline default is true
-            tabline    = false, -- hide the tabline
-            winbar     = false -- hide winbar
+            tabline = false, -- hide the tabline
+            winbar = false, -- hide winbar
           },
-        }
+        })
       end,
-      dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+      dependencies = { { "nvim-tree/nvim-web-devicons" } },
     },
 
     -- WhichKey
@@ -74,18 +74,14 @@ function M.setup()
     -- Better icons
     {
       "kyazdani42/nvim-web-devicons",
-      module = "nvim-web-devicons",
       config = function()
-        require("nvim-web-devicons").setup { default = true }
+        require("nvim-web-devicons").setup({ default = true })
       end,
     },
 
     -- Better Comment
     {
       "numToStr/Comment.nvim",
-      config = function()
-        require("Comment").setup {}
-      end,
     },
 
     -- Better surround
@@ -95,7 +91,10 @@ function M.setup()
     { "andymass/vim-matchup",   event = "CursorMoved" },
     { "wellle/targets.vim",     event = "CursorMoved" },
     { "unblevable/quick-scope", event = "CursorMoved" },
-    { "chaoren/vim-wordmotion", opt = true,           fn = { "<Plug>WordMotion_w" } },
+    {
+      "chaoren/vim-wordmotion",
+      fn = { "<Plug>WordMotion_w" },
+    },
 
     {
       "iamcco/markdown-preview.nvim",
@@ -116,12 +115,11 @@ function M.setup()
       dependencies = {
         "nvim-web-devicons",
         "nvim-treesitter",
-      }
+      },
     },
     -- Treesitter
     {
       "nvim-treesitter/nvim-treesitter",
-      opt = true,
       event = "BufRead",
       make = ":TSUpdate",
       config = function()
@@ -138,7 +136,6 @@ function M.setup()
         require("config.telescope").setup()
       end,
       cmd = { "Telescope" },
-      module = "telescope",
       keys = { "<leader>f", "<leader>p" },
       dependencies = {
         "nvim-lua/popup.nvim",
@@ -146,23 +143,23 @@ function M.setup()
         {
           "nvim-telescope/telescope-fzf-native.nvim",
           build =
-          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
         "nvim-telescope/telescope-project.nvim",
         "cljoly/telescope-repo.nvim",
         {
           "ahmedkhalf/project.nvim",
           config = function()
-            require("project_nvim").setup {}
+            require("project_nvim").setup({})
           end,
         },
         {
           "nvim-telescope/telescope-frecency.nvim",
           dependencies = {
-            "kkharji/sqlite.lua"
-          }
+            "kkharji/sqlite.lua",
+          },
         },
-        "nvim-telescope/telescope-file-browser.nvim"
+        "nvim-telescope/telescope-file-browser.nvim",
       },
     },
     -- nvim-tree
@@ -170,7 +167,6 @@ function M.setup()
       "kyazdani42/nvim-tree.lua",
       dependencies = "nvim-web-devicons",
       cmd = { "NvimTreeToggle", "NvimTreeClose" },
-      module = "nvim-tree",
       config = function()
         require("config.nvimtree").setup()
       end,
@@ -228,7 +224,6 @@ function M.setup()
     {
       "windwp/nvim-autopairs",
       dependencies = "nvim-treesitter",
-      module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
       config = function()
         require("config.autopairs").setup()
       end,
@@ -238,10 +233,6 @@ function M.setup()
     {
       "windwp/nvim-ts-autotag",
       dependencies = "nvim-treesitter",
-      event = "InsertEnter",
-      config = function()
-        require("nvim-ts-autotag").setup { enable = true }
-      end,
     },
 
     -- End wise
@@ -262,7 +253,6 @@ function M.setup()
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "folke/neodev.nvim",
         "RRethy/vim-illuminate",
         "nvimtools/none-ls.nvim",
         --[[{
@@ -283,9 +273,8 @@ function M.setup()
     },
 
     {
-      "nvimtools/none-ls.nvim"
+      "nvimtools/none-ls.nvim",
     },
-
 
     -- trouble.nvim
     {
@@ -294,9 +283,9 @@ function M.setup()
       dependencies = "nvim-web-devicons",
       cmd = { "TroubleToggle", "Trouble" },
       config = function()
-        require("trouble").setup {
+        require("trouble").setup({
           use_diagnostic_signs = true,
-        }
+        })
       end,
     },
 
@@ -306,7 +295,7 @@ function M.setup()
       event = "VimEnter",
       cmd = { "Lspsaga" },
       config = function()
-        require("lspsaga").setup {}
+        require("lspsaga").setup({})
       end,
     },
 
@@ -314,10 +303,9 @@ function M.setup()
     {
       "simrat39/rust-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
-      module = "rust-tools",
       ft = { "rust" },
       config = function()
-        require("rust-tools").setup {}
+        require("rust-tools").setup({})
       end,
     },
 
@@ -334,14 +322,13 @@ function M.setup()
     {
       "mfussenegger/nvim-dap",
       event = "BufReadPre",
-      module = { "dap" },
       dependencies = {
         "theHamsta/nvim-dap-virtual-text",
         "rcarriga/nvim-dap-ui",
         "mfussenegger/nvim-dap-python",
         "nvim-telescope/telescope-dap.nvim",
-        { "leoluz/nvim-dap-go",                module = "dap-go" },
-        { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+        { "leoluz/nvim-dap-go" },
+        { "jbyuki/one-small-step-for-vimkind" },
       },
       config = function()
         require("config.dap").setup()
@@ -370,24 +357,20 @@ function M.setup()
       "nvim-pack/nvim-spectre",
       config = function()
         require("spectre").setup()
-      end
+      end,
     },
 
     {
       "ThePrimeagen/refactoring.nvim",
-      module = {
-        "refactoring",
-        "telescope"
-      },
       keys = {
-        [[<leader>r]]
+        [[<leader>r]],
       },
       dependencies = {
-        "telescope.nvim"
+        "telescope.nvim",
       },
       config = function()
         require("config.refactoring").setup()
-      end
+      end,
     },
 
     {
@@ -396,12 +379,11 @@ function M.setup()
         require("config.neogen").setup()
       end,
       cmd = { "Neogen" },
-      module = "neogen",
     },
 
     {
       "kkoomen/vim-doge",
-      run = ":call doge#install()",
+      build = ":call doge#install()",
       config = function()
         require("config.doge").setup()
       end,
@@ -409,12 +391,12 @@ function M.setup()
     },
 
     {
-      "potamides/pantran.nvim"
+      "potamides/pantran.nvim",
     },
 
     {
       "mfussenegger/nvim-jdtls",
-      ft = { "java" }
+      ft = { "java" },
     },
 
     {
@@ -428,9 +410,8 @@ function M.setup()
         "nvim-neotest/neotest-go",
         "haydenmeade/neotest-jest",
         "nvim-neotest/neotest-vim-test",
-        "andy-bell101/neotest-java"
+        "andy-bell101/neotest-java",
       },
-      module = { "neotest" },
       config = function()
         require("config.neotest").setup()
       end,
@@ -440,14 +421,14 @@ function M.setup()
       "SmiteshP/nvim-navic",
       dependencies = "neovim/nvim-lspconfig",
       config = function()
-        require("nvim-navic").setup {
+        require("nvim-navic").setup({
           highlight = true,
-          click = true
-        }
+          click = true,
+        })
       end,
     },
 
-    { 'krivahtoo/silicon.nvim', build = './install.sh' },
+    { "krivahtoo/silicon.nvim", build = "./install.sh" },
 
     {
       "kdheepak/lazygit.nvim",
@@ -457,40 +438,37 @@ function M.setup()
       },
     },
 
-
     {
       "anuvyklack/hydra.nvim",
       config = function()
         require("config.hydra").setup()
       end,
       dependencies = "anuvyklack/keymap-layer.nvim",
-      module = { "hydra" },
       event = { "BufReadPre" },
     },
 
-
     {
-      'hedyhli/outline.nvim',
+      "hedyhli/outline.nvim",
       config = function()
         require("config.outline").setup()
-      end
+      end,
     },
 
     {
       "andweeb/presence.nvim",
       config = function()
         require("config.presence").setup()
-      end
+      end,
     },
 
     {
       "akinsho/toggleterm.nvim",
-      version = '*',
+      version = "*",
       config = function()
-        require("toggleterm").setup {
+        require("toggleterm").setup({
           direction = "float",
-        }
-      end
+        })
+      end,
     },
 
     -- Database
@@ -503,25 +481,15 @@ function M.setup()
       config = function()
         require("config.dadbod").setup()
       end,
-      cmd = { "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer", "DBUIRenameBuffer", "DBUILastQueryInfo" },
+      cmd = {
+        "DBUIToggle",
+        "DBUI",
+        "DBUIAddConnection",
+        "DBUIFindBuffer",
+        "DBUIRenameBuffer",
+        "DBUILastQueryInfo",
+      },
     },
-
-
-    --[[{
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require("config.copilot").setup()
-      end,
-    },
-
-    {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-        require("copilot_cmp").setup()
-      end
-    },]] --
 
     { "onsails/lspkind.nvim" },
 
@@ -529,7 +497,7 @@ function M.setup()
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
-        require("todo-comments").setup {}
+        require("todo-comments").setup({})
       end,
     },
 
@@ -538,18 +506,6 @@ function M.setup()
       dependencies = {
         "nvim-telescope/telescope.nvim",
       },
-    },
-
-    {
-      "luckasRanarison/nvim-devdocs",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-        "nvim-treesitter/nvim-treesitter",
-      },
-      config = function()
-        require("nvim-devdocs").setup()
-      end
     },
 
     {
@@ -568,23 +524,23 @@ function M.setup()
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-        "3rd/image.nvim",              -- dependencies image support in preview window: See `# Preview Mode` for more information
+        "3rd/image.nvim",          -- dependencies image support in preview window: See `# Preview Mode` for more information
       },
       config = function()
-        require("neo-tree").setup {
+        require("neo-tree").setup({
           filesystem = {
             filtered_items = {
               visible = true,
               hide_dotfiles = false,
               hide_gitignore = false,
               hide_by_name = {
-                '.git',
-                '.DS_Store',
-                'thumbs.db',
+                ".git",
+                ".DS_Store",
+                "thumbs.db",
               },
-            }
-          }
-        }
+            },
+          },
+        })
       end,
     },
     { "hrsh7th/cmp-nvim-lsp",     lazy = true },
@@ -595,37 +551,37 @@ function M.setup()
       config = function()
         -- calling `setup` is dependencies for customization
         require("fzf-lua").setup({})
-      end
+      end,
     },
     {
       "lewis6991/gitsigns.nvim",
       event = {
         "BufReadPre",
-        "BufNewFile"
-      }
+        "BufNewFile",
+      },
     },
 
     {
-      'pwntester/octo.nvim',
+      "pwntester/octo.nvim",
       dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-        'nvim-tree/nvim-web-devicons',
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "nvim-tree/nvim-web-devicons",
       },
       config = function()
-        require "octo".setup()
-      end
+        require("octo").setup()
+      end,
     },
     {
       "ray-x/guihua.lua",
-      build = "cd lua/fzy && make"
+      build = "cd lua/fzy && make",
     },
     {
-      'Wansmer/symbol-usage.nvim',
-      event = 'BufReadPre', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+      "Wansmer/symbol-usage.nvim",
+      event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
       config = function()
-        require('config.symbol-usage').setup()
-      end
+        require("config.symbol-usage").setup()
+      end,
     },
     {
       "aznhe21/actions-preview.nvim",
@@ -633,7 +589,14 @@ function M.setup()
         require("config.actions-preview").setup()
       end,
       keys = {
-        { "ga", function() require("actions-preview").code_actions() end, desc = "Code Action Preview", mode = { "n", "v" } },
+        {
+          "ga",
+          function()
+            require("actions-preview").code_actions()
+          end,
+          desc = "Code Action Preview",
+          mode = { "n", "v" },
+        },
       },
     },
     {
@@ -645,15 +608,28 @@ function M.setup()
       ft = "gitcommit",
     },
     {
-      "davidsierradz/cmp-conventionalcommits"
+      "davidsierradz/cmp-conventionalcommits",
     },
     {
       "kawre/neotab.nvim",
       event = "InsertEnter",
     },
-    { 'wakatime/vim-wakatime',    lazy = false },
+    { "wakatime/vim-wakatime",    lazy = false },
     { "mfussenegger/nvim-ansible" },
-    { "nvim-neotest/nvim-nio" }
+    { "nvim-neotest/nvim-nio" },
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "luvit-meta/library", words = { "vim%.uv" } },
+          "lazy.nvim",
+        },
+      },
+    },
+    { "Bilal2453/luvit-meta", lazy = true },
   })
 end
 

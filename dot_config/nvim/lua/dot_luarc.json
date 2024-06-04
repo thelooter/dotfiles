@@ -1,6 +1,5 @@
 {
 	"workspace.library": [
-		"/home/evek/.local/share/nvim/site/pack/packer/opt/neodev.nvim/types/stable",
 		"/usr/share/nvim/runtime/lua",
 		"$HOME/.config/nvim-beginner/nvim/lua",
 		"${3rd}/luv/library"

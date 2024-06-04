@@ -1,6 +1,6 @@
 local M = {}
 
-local whichkey = require "which-key"
+local whichkey = require("which-key")
 
 local keymap = vim.api.nvim_set_keymap
 local buf_keymap = vim.api.nvim_buf_set_keymap
@@ -27,7 +27,7 @@ local function keymappings(client, bufnr)
       n = { "<cmd>Lspsaga rename<CR>", "Rename" },
       h = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
       r = { "<cmd>Telescope lsp_references<CR>", "References" },
-      t = { "<cmd>TroubleToggle<CR>", "Trouble" },
+      t = { "<cmd>Trouble toggle diagnostics<CR>", "Trouble" },
     },
   }
   if client.server_capabilities.document_formatting then

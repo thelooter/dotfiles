@@ -1,6 +1,6 @@
 local M = {}
 
-local util = require "lspconfig.util"
+local util = require("lspconfig.util")
 
 local servers = {
   gopls = {
@@ -25,7 +25,7 @@ local servers = {
           tidy = true,
           upgrade_dependency = true,
           vendor = true,
-        }
+        },
       },
     },
   },
@@ -34,8 +34,8 @@ local servers = {
     settings = {
       json = {
         schemas = require("schemastore").json.schemas(),
-      }
-    }
+      },
+    },
   },
   pyright = {},
   rust_analyzer = {},
@@ -54,14 +54,14 @@ local servers = {
             "vim",
             "awesome",
             "screen",
-            "client"
+            "client",
           },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
           library = {
-            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-            [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
           },
         },
         hint = {
@@ -109,8 +109,8 @@ local servers = {
       "/.local/share/nvim/vscode-gradle/gradle-language-server/build/install/gradle-language-server/bin/gradle-language-server",
     },
     root_dir = function(fname)
-      return util.root_pattern(unpack { "settings.gradle", "settings.gradle.kts" })(fname)
-          or util.root_pattern(unpack { "build.gradle" })(fname)
+      return util.root_pattern(unpack({ "settings.gradle", "settings.gradle.kts" }))(fname)
+          or util.root_pattern(unpack({ "build.gradle" }))(fname)
     end,
     filetypes = { "groovy", "kotlin" },
   },
@@ -136,11 +136,15 @@ local servers = {
 local function on_attach(client, bufnr)
   -- Enable completion triggered by <C-X><C-O>
   -- See `:help omnifunc` and `:help ins-completion` for more information.
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", {
+    buf = bufnr,
+  })
 
   -- Use LSP as the handler for formatexpr.
   -- See `:help formatexpr` for more information.
-  vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+  vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.formatexpr()", {
+    buf = 0,
+  })
 
   -- Configure key mappings
   require("config.lsp.keymaps").setup(client, bufnr)
@@ -163,7 +167,7 @@ local function on_attach(client, bufnr)
 
   -- Configure for jdtls
   if client.name == "jdtls" then
-    require("jdtls").setup_dap { hotcodereplace = "auto" }
+    require("jdtls").setup_dap({ hotcodereplace = "auto" })
     require("jdtls.dap").setup_dap_main_class_configs()
     vim.lsp.codelens.refresh()
   end

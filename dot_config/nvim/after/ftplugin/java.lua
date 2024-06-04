@@ -1,14 +1,14 @@
 local jdtls_ok, jdtls = pcall(require, "jdtls")
 if not jdtls_ok then
-  vim.notify "JDTLS not found, install with `:LspInstall jdtls`"
+  vim.notify("JDTLS not found, install with `:LspInstall jdtls`")
   return
 end
 
 -- Installation location of jdtls by nvim-lsp-installer
-local JDTLS_LOCATION = vim.fn.stdpath "data" .. "/mason/packages/jdtls"
+local JDTLS_LOCATION = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 
 -- Data directory - change it to your liking
-local HOME = os.getenv "HOME"
+local HOME = os.getenv("HOME")
 local WORKSPACE_PATH = HOME .. "/workspace/java/"
 
 -- Debugger installation location
@@ -16,7 +16,7 @@ local DEBUGGER_LOCATION = HOME .. "/.local/share/nvim"
 
 -- Only for Linux and Mac
 local SYSTEM = "linux"
-if vim.fn.has "mac" == 1 then
+if vim.fn.has("mac") == 1 then
   SYSTEM = "mac"
 end
 
@@ -92,7 +92,7 @@ local config = {
       format = {
         enabled = true,
         settings = {
-          url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
+          url = vim.fn.stdpath("config") .. "/lang-servers/intellij-java-google-style.xml",
           profile = "GoogleStyle",
         },
       },
@@ -100,8 +100,8 @@ local config = {
     signatureHelp = { enabled = true },
     inlayHints = {
       parameterNames = {
-        enabled = "all"
-      }
+        enabled = "all",
+      },
     },
     completion = {
       favoriteStaticMembers = {
@@ -152,7 +152,6 @@ local config = {
 jdtls.start_or_attach(config)
 
 -- Add the commands
-require("jdtls.setup").add_commands()
 -- vim.api.nvim_exec(
 --   [[
 -- command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)

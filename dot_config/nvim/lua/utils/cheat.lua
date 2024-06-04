@@ -34,12 +34,16 @@ function M.cht()
 end
 
 function M.cht_cmd(cmd)
-  vim.api.nvim_exec("vnew", true)
-  vim.api.nvim_exec("terminal", true)
+  vim.api.nvim_exec2("vnew", {output = true})
+  vim.api.nvim_exec2("terminal", {output=true})
   local buf = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_set_name(buf, "cheatsheet-" .. buf)
-  vim.api.nvim_buf_set_option(buf, "filetype", "cheat")
-  vim.api.nvim_buf_set_option(buf, "syntax", lang)
+  vim.api.nvim_set_option_value("filetype", "cheat", {
+    buf= buf
+  })
+  vim.api.nvim_set_option_value("syntax", lang, {
+    buf=buf
+  })
 
   local chan_id = vim.b.terminal_job_id
   local cht_cmd = "curl cht.sh/" .. cmd

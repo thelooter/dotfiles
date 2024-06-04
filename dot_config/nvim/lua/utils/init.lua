@@ -1,15 +1,3 @@
-_G.dump = function(...)
-  print(vim.inspect(...))
-end
-
-_G.prequire = function(...)
-  local status, lib = pcall(require, ...)
-  if status then
-    return lib
-  end
-  return nil
-end
-
 local M = {}
 
 function M.t(str)
@@ -17,14 +5,13 @@ function M.t(str)
 end
 
 function M.get_buf_option(opt)
-  local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
+  local status_ok, buf_option = pcall(vim.api.nvim_get_option_value, opt)
   if not status_ok then
     return nil
   else
     return buf_option
   end
 end
-
 
 function M.log(msg, hl, name)
   name = name or "Neovim"

@@ -1,12 +1,12 @@
 local M = {}
 
-local navic = require "nvim-navic"
-local utils = require "utils"
-local icons = require "config.icons"
+local navic = require("nvim-navic")
+local utils = require("utils")
+local icons = require("config.icons")
 
 local function get_modified()
-  local file_name = vim.fn.expand "%:t"
-  local extension = vim.fn.expand "%:e"
+  local file_name = vim.fn.expand("%:t")
+  local extension = vim.fn.expand("%:e")
 
   if file_name then
     local file_icon, file_icon_color =
@@ -17,7 +17,7 @@ local function get_modified()
       file_icon = icons.winbar.FileIcon
     end
 
-    if utils.get_buf_option "mod" then
+    if utils.get_buf_option("mod") then
       local mod = icons.git.Mod
       return mod .. " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. file_name
     end
@@ -25,16 +25,8 @@ local function get_modified()
   end
 end
 
-local function get_location()
-  local location = navic.get_location()
-  if not utils.is_empty(location) then
-    return " " .. icons.ui.ChevronRight .. " " .. location
-  end
-  return ""
-end
-
 local function get_relative_line_num(ctx_node_line_num)
-  local cursor_line_num = vim.fn.line "."
+  local cursor_line_num = vim.fn.line(".")
   local num_folded_lines = 0
 
   -- Find all folds between the context node and the cursor

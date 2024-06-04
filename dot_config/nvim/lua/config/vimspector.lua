@@ -31,16 +31,18 @@ end
 function M.generate_debug_profile()
   --Get current file type
   local buf = vim.api.nvim_get_current_buf()
-  local ft  = vim.api.nvim_buf_get_option(buf, "filetype")
+  local ft = vim.api.nvim_get_option_value("filetype", {
+    buf = buf,
+  })
 
   if ft == "python" then
     --Get Python path
-    local python3 = vim.fn.exepath "python"
+    local python3 = vim.fn.exepath("python")
     local debugProfile = string.format(vimpspector_python, python3)
 
     -- Generate debug profile in a new window
     vim.api.nvim_exec2("vsp", {})
-    local win    = vim.api.nvim_get_current_win()
+    local win = vim.api.nvim_get_current_win()
     local bufNew = vim.api.nvim_create_buf(true, false)
     vim.api.nvim_buf_set_name(bufNew, ".vimspector.json")
     vim.api.nvim_win_set_buf(win, bufNew)

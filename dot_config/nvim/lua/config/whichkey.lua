@@ -1,33 +1,31 @@
 local M = {}
 
-
-local whichkey = require "which-key"
+local whichkey = require("which-key")
 
 local conf = {
   window = {
-    border = "single",   -- none, single, double, shadow
+    border = "single", -- none, single, double, shadow
     position = "bottom", -- bottom, top
   },
 }
 
 local opts = {
-  mode = "n",     -- Normal mode
+  mode = "n",    -- Normal mode
   prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
+  buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
 
 local v_opts = {
-  mode = "v",     -- Visual mode
+  mode = "v",    -- Visual mode
   prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
+  buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
 }
-
 
 local function normal_keymap()
   local keymaps_f = nil -- File search
@@ -69,8 +67,6 @@ local function normal_keymap()
     }
   end
 
-
-
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -86,7 +82,7 @@ local function normal_keymap()
       g = { "<cmd>Neogen func <cr>", "Function Doc" },
       G = { "<cmd>Neogen class <cr>", "Class Doc" },
       d = { "<cmd>DogeGenerate<Cr>", "Generate Doc" },
-      o = { "<cmd>Outline<Cr>", "Open Outline" }
+      o = { "<cmd>Outline<Cr>", "Open Outline" },
     },
 
     o = {
@@ -117,7 +113,7 @@ local function normal_keymap()
       x = { "<cmd> %:p:h:<cr>", "Change Directory" },
       e = { "!!SHELL<CR>", "Execute Line" },
       W = { "<cmd>lua require('utils.session').toggle_session()<cr>", "Toggle Workspace Saving" },
-      w = { "<cmd>lua require('utils.session').list_sessions()<cr>", "Restore Workspace" }
+      w = { "<cmd>lua require('utils.session').list_sessions()<cr>", "Restore Workspace" },
     },
 
     v = {
@@ -140,14 +136,14 @@ local function normal_keymap()
 
     g = {
       name = "Git",
-      l = { "<cmd>LazyGit<CR>", "Open LazyGit" }
+      l = { "<cmd>LazyGit<CR>", "Open LazyGit" },
     },
 
     s = {
       name = "Spectre",
       S = { "<cmd>lua require('spectre').toggle()<CR>", "Toggle Spectre" },
       w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
-      f = { "<cmd>lua require('spectre').open_file_search({select_word=true})", "Search current file" }
+      f = { "<cmd>lua require('spectre').open_file_search({select_word=true})", "Search current file" },
     },
 
     t = {
@@ -170,9 +166,7 @@ local function normal_keymap()
       f = { "<cmd>ToggleTerm direction=float<cr>", "Toggle" },
       h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Horizontal" },
       v = { "<cmd>ToggleTerm direction=vertical size=80<cr>", "Toggle Vertical" },
-    }
-
-
+    },
   }
 
   whichkey.register(mappings, opts)
@@ -185,34 +179,36 @@ local function visual_keymap()
       y = {
         "<cmd>lua require'gitlinker'.get_buf_range_url('v', {action_callback = require'gitlinker.actions'.open_in_browser})<cr>",
         "Link",
-      }
+      },
     },
     s = {
       name = "Spectre",
-      w = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current work" }
+      w = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current work" },
     },
     r = {
       name = "Refactor",
-      e    = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract function" },
-      f    = {
+      e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract function" },
+      f = {
         [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]],
         "Extract Function to File",
       },
-      v    = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
-      i    = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
-      r    = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-      V    = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
-    }
+      v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
+      i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
+      r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
+      V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
+    },
   }
   whichkey.register(keymap, v_opts)
 end
 
 local function code_keymap()
-  vim.cmd "autocmd FileType * lua CodeRunner()"
+  vim.cmd("autocmd FileType * lua CodeRunner()")
 
   function CodeRunner()
     local bufnr = vim.api.nvim_get_current_buf()
-    local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    local ft = vim.api.nvim_get_option_value("filetype", {
+      buf = bufnr,
+    })
     local keymap = nil
     local keymap_c_v = {} -- visual key map
 
@@ -225,12 +221,12 @@ local function code_keymap()
     elseif ft == "lua" then
       keymap = {
         name = "Code",
-        r = { "<cmd>luafile %<cr>", "Run" }
+        r = { "<cmd>luafile %<cr>", "Run" },
       }
     elseif ft == "rust" then
       keymap = {
         name = "Code",
-        r = { "<cmd>Cargo run<cr>", "Run" }
+        r = { "<cmd>Cargo run<cr>", "Run" },
       }
     elseif ft == "go" then
       keymap = {

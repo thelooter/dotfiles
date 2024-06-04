@@ -21,7 +21,7 @@ end
 
 local function lsp_client(msg)
   msg = msg or ""
-  local buf_clients = vim.lsp.get_active_clients()
+  local buf_clients = vim.lsp.get_clients()
 
   if next(buf_clients) == nil then
     if type(msg) == "boolean" or #msg == 0 then
@@ -41,19 +41,19 @@ local function lsp_client(msg)
   end
 
   -- add formatter
-  local formatters = require "config.lsp.null-ls.formatters"
+  local formatters = require("config.lsp.null-ls.formatters")
   local supported_formatters = formatters.list_registered(buf_ft)
 
   vim.list_extend(buf_client_names, supported_formatters)
 
   -- add linter
-  local linters = require "config.lsp.null-ls.linters"
+  local linters = require("config.lsp.null-ls.linters")
   local supported_linters = linters.list_registered(buf_ft)
 
   vim.list_extend(buf_client_names, supported_linters)
 
   -- add hover
-  local hovers = require "config.lsp.null-ls.hover"
+  local hovers = require("config.lsp.null-ls.hover")
   local supported_hovers = hovers.list_registered(buf_ft)
 
   vim.list_extend(buf_client_names, supported_hovers)
@@ -92,9 +92,9 @@ local function lsp_progress(_, is_active)
 end
 
 function M.setup()
-  local navic = require "nvim-navic"
+  local navic = require("nvim-navic")
 
-  require("lualine").setup {
+  require("lualine").setup({
     options = {
       icons_enabled = true,
       theme = "catppuccin",
@@ -163,7 +163,7 @@ function M.setup()
     },
     tabline = {},
     extensions = {},
-  }
+  })
 end
 
 return M

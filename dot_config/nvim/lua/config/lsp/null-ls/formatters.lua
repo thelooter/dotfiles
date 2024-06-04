@@ -26,7 +26,9 @@ function M.format()
 end
 
 function M.setup(client, buf)
-  local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+  local filetype = vim.api.nvim_get_option_value("filetype", {
+    buf = buf
+  })
 
   local enable = false
   if M.has_formatter(filetype) then

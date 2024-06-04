@@ -123,7 +123,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
 # bun completions
-[ -s "/home/$HOME/.bun/_bun" ] && source "/home/$HOME/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -171,7 +171,7 @@ cd ~
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /home/$HOME/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/$HOME/.config/.dart-cli-completion/zsh-config.zsh || true
+[[ -f $HOME/.config/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 export HISTFILE=".local/state/zsh/history"
 export EDITOR="nvim"

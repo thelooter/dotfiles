@@ -71,12 +71,12 @@ ZSH_THEME="ys"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-	ansible
+    git
+    ansible
     archlinux
-	rust
-	gradle
-	golang
+    rust
+    gradle
+    golang
     colored-man-pages
     docker
     docker-compose

@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   require("catppuccin").setup({
-    flavour = "frappe",
+    flavour = "mocha",
     transparent_background = true,
     integrations = {
       mason = true,
@@ -14,11 +14,12 @@ function M.setup()
       which_key = true,
       lsp_saga = true,
       octo = true,
+      dashboard = true,
       navic = {
         enabled = true,
-        custom_bg = "NONE"
+        custom_bg = "NONE",
       },
-      notify = true
+      notify = true,
     },
     native_lsp = {
       enabled = true,

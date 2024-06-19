@@ -274,6 +274,9 @@ function M.setup()
 
     {
       "nvimtools/none-ls.nvim",
+      dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+      },
     },
 
     -- trouble.nvim
@@ -618,6 +621,17 @@ function M.setup()
     { "mfussenegger/nvim-ansible" },
     { "nvim-neotest/nvim-nio" },
     {
+      "akinsho/flutter-tools.nvim",
+      config = function()
+        require("flutter-tools").setup({}) -- use defaults
+      end,
+      lazy = false,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "stevearc/dressing.nvim",
+      },
+    },
+    {
       "folke/lazydev.nvim",
       ft = "lua", -- only load on lua files
       opts = {
@@ -641,6 +655,15 @@ function M.setup()
         require("tiny-devicons-auto-colors").setup({
           colors = theme_colors,
         })
+      end,
+    },
+    {
+      "lervag/vimtex",
+      lazy = false, -- we don't want to lazy load VimTeX
+      -- tag = "v2.15", -- uncomment to pin to a specific release
+      init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "zathura"
       end,
     },
   })

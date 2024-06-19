@@ -2,7 +2,7 @@ local M = {}
 
 -- Custom actions
 local transform_mod = require("telescope.actions.mt").transform_mod
-local nvb_actions = transform_mod {
+local nvb_actions = transform_mod({
   file_path = function(prompt_bufnr)
     -- Get selected entry and the file full path
     local content = require("telescope.actions.state").get_selected_entry()
@@ -12,50 +12,48 @@ local nvb_actions = transform_mod {
     vim.fn.setreg('"', full_path)
 
     -- Close the popup
-    require("utils").info "File path is yanked "
+    require("utils").info("File path is yanked ")
     require("telescope.actions").close(prompt_bufnr)
   end,
-}
+})
 
 function M.setup()
-  local actions = require "telescope.actions"
-  local telescope = require "telescope"
+  local actions = require("telescope.actions")
+  local telescope = require("telescope")
 
   -- Custom previewer
-  local previewers = require "telescope.previewers"
-  local Job = require "plenary.job"
+  local previewers = require("telescope.previewers")
+  local Job = require("plenary.job")
   local preview_maker = function(filepath, bufnr, opts)
     filepath = vim.fn.expand(filepath)
-    Job
-        :new({
-          command = "file",
-          args = { "--mime-type", "-b", filepath },
-          on_exit = function(j)
-            local mime_type = vim.split(j:result()[1], "/")[1]
+    Job:new({
+      command = "file",
+      args = { "--mime-type", "-b", filepath },
+      on_exit = function(j)
+        local mime_type = vim.split(j:result()[1], "/")[1]
 
-            if mime_type == "text" then
-              -- Check file size
-              vim.loop.fs_stat(filepath, function(_, stat)
-                if not stat then
-                  return
-                end
-                if stat.size > 500000 then
-                  return
-                else
-                  previewers.buffer_previewer_maker(filepath, bufnr, opts)
-                end
-              end)
-            else
-              vim.schedule(function()
-                vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY FILE" })
-              end)
+        if mime_type == "text" then
+          -- Check file size
+          vim.loop.fs_stat(filepath, function(_, stat)
+            if not stat then
+              return
             end
-          end,
-        })
-        :sync()
+            if stat.size > 500000 then
+              return
+            else
+              previewers.buffer_previewer_maker(filepath, bufnr, opts)
+            end
+          end)
+        else
+          vim.schedule(function()
+            vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY FILE" })
+          end)
+        end
+      end,
+    }):sync()
   end
 
-  telescope.setup {
+  telescope.setup({
     defaults = {
       buffer_previewer_maker = preview_maker,
       mappings = {
@@ -67,8 +65,8 @@ function M.setup()
         },
       },
       file_ignore_patterns = {
-        "node_modules"
-      }
+        "node_modules",
+      },
     },
     pickers = {
       find_files = {
@@ -96,21 +94,22 @@ function M.setup()
       extensions = {
         frecency = {
           db_safe_mode = false,
-          auto_validate = false
-        }
-      }
+          auto_validate = false,
+        },
+      },
     },
-  }
+  })
 
-  telescope.load_extension "fzf"
-  telescope.load_extension "project" -- telescope-project.nvim
-  telescope.load_extension "repo"
-  telescope.load_extension "file_browser"
-  telescope.load_extension "projects" -- project.nvim
-  telescope.load_extension "notify"
-  telescope.load_extension "frecency"
-  telescope.load_extension "import"
-  telescope.load_extension "yaml_schema"
+  telescope.load_extension("fzf")
+  telescope.load_extension("project") -- telescope-project.nvim
+  telescope.load_extension("repo")
+  telescope.load_extension("file_browser")
+  telescope.load_extension("projects") -- project.nvim
+  telescope.load_extension("notify")
+  telescope.load_extension("frecency")
+  telescope.load_extension("import")
+  telescope.load_extension("yaml_schema")
+  telescope.load_extension("flutter")
 end
 
 return M

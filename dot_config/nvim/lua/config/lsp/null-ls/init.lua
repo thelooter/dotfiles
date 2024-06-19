@@ -4,20 +4,6 @@ local nls = require("null-ls")
 local nls_utils = require("null-ls.utils")
 local b = nls.builtins
 
-local with_diagnostics_code = function(builtin)
-  return builtin.with({
-    diagnostics_format = "#{m} [#{c}]",
-  })
-end
-
-local with_root_file = function(builtin, file)
-  return builtin.with({
-    condition = function(utils)
-      return utils.root_has_file(file)
-    end,
-  })
-end
-
 local sources = {
   -- formatting
   b.formatting.prettierd,
@@ -32,7 +18,7 @@ local sources = {
   b.formatting.gofumpt,
   b.formatting.golines,
   b.formatting.npm_groovy_lint,
-
+  require("none-ls.formatting.latexindent"),
   -- diagnostics
   b.diagnostics.markdownlint,
   -- b.diagnostics.eslint_d,

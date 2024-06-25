@@ -255,12 +255,12 @@ function M.setup()
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "RRethy/vim-illuminate",
         "nvimtools/none-ls.nvim",
-        --[[{
+        {
           "j-hui/fidget.nvim",
           config = function()
             require("config.fidget").setup()
           end,
-        },--]]
+        },
         "b0o/schemastore.nvim",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
         {
@@ -294,7 +294,7 @@ function M.setup()
 
     -- lspsaga.nvim
     {
-      "tami5/lspsaga.nvim",
+      "nvimdev/lspsaga.nvim",
       event = "VimEnter",
       cmd = { "Lspsaga" },
       config = function()

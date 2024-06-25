@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  require("noice").setup {
+  require("noice").setup({
     presets = {
       command_palette = true,
       bottom_search = true,
@@ -13,6 +13,9 @@ function M.setup()
       },
     },
     lsp = {
+      progress = {
+        enabled = false,
+      },
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -20,7 +23,7 @@ function M.setup()
         ["cmp.entry.get_documentation"] = true,
       },
     },
-  }
+  })
 end
 
 return M

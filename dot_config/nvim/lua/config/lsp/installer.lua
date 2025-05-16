@@ -33,14 +33,10 @@ function M.setup(servers, options)
 		automatic_installation = false,
 	})
 
-	-- Package installation folder
-	require("mason-lspconfig").setup_handlers({
-		function(server_name)
-			local opts = vim.tbl_deep_extend("force", options, servers[server_name] or {})
-			lspconfig[server_name].setup({ opts })
-		end,
-		["rust_analyzer"] = function()
-			local opts = vim.tbl_deep_extend("force", options, servers["rust_analyzer"] or {})
+	-- Set up each LSP server
+	for server_name, server_opts in pairs(servers) do
+		local opts = vim.tbl_deep_extend("force", options, server_opts or {})
+		if server_name == "rust_analyzer" then
 			local ih = require("inlay-hints")
 			require("rust-tools").setup({
 				tools = {
@@ -61,8 +57,10 @@ function M.setup(servers, options)
 				},
 			})
 			lspconfig.rust_analyzer.setup(opts)
-		end,
-	})
+		else
+			lspconfig[server_name].setup(opts)
+		end
+	end
 end
 
 return M

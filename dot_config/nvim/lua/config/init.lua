@@ -1,20 +1,5 @@
 local g = vim.g
 
-PLUGINS = {
-  coq = {
-    enabled = false,
-  },
-  nvim_cmp = {
-    enabled = true,
-  },
-  fzf_lua = {
-    enabled = true,
-  },
-  telescope = {
-    enabled = true,
-  },
-}
-
 local disabled_built_ins = {
   "getscript",
   "getscriptPlugin",

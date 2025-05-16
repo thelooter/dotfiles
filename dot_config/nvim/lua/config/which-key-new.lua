@@ -31,37 +31,37 @@ local function normal_keymap()
   local keymaps_f = nil -- File search
   local keymaps_p = nil -- Project search
 
-    keymaps_f = {
-      name = "Find",
-      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
-      d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
-      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      h = { "<cmd>Telescope help_tags<cr>", "Help" },
-      o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
-      g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      c = { "<cmd>Telescope commands<cr>", "Commands" },
-      r = { "<cmd>Telescope file_browser<cr>", "Browser" },
-      w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
-      i = { "<cmd>Telescope import<cr>", "Import" },
-      e = { "<cmd>Neotree toggle<cr>", "Explorer" },
-    }
+  keymaps_f = {
+    name = "Find",
+    f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
+    d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
+    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+    h = { "<cmd>Telescope help_tags<cr>", "Help" },
+    o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
+    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+    c = { "<cmd>Telescope commands<cr>", "Commands" },
+    r = { "<cmd>Telescope file_browser<cr>", "Browser" },
+    w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
+    i = { "<cmd>Telescope import<cr>", "Import" },
+    e = { "<cmd>Neotree toggle<cr>", "Explorer" },
+  }
 
-    keymaps_p = {
-      name = "Project",
-      p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "List" },
-      s = { "<cmd>Telescope repo list<cr>", "Search" },
-    }
+  keymaps_p = {
+    name = "Project",
+    p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "List" },
+    s = { "<cmd>Telescope repo list<cr>", "Search" },
+  }
 
-    keymaps_f = {
-      name = "Find",
-      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
-      b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
-      o = { "<cmd>FzfLua oldfiles<cr>", "Old Files" },
-      g = { "<cmd>FzfLua live_grep<cr>", "Live Grep" },
-      c = { "<cmd>FzfLua commands<cr>", "Commands" },
-      e = { "<cmd>Neotree toggle<cr>", "Explorer" },
-      i = { "<cmd>Telescope import<cr>", "Import" },
-    }
+  keymaps_f = {
+    name = "Find",
+    f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
+    b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
+    o = { "<cmd>FzfLua oldfiles<cr>", "Old Files" },
+    g = { "<cmd>FzfLua live_grep<cr>", "Live Grep" },
+    c = { "<cmd>FzfLua commands<cr>", "Commands" },
+    e = { "<cmd>Neotree toggle<cr>", "Explorer" },
+    i = { "<cmd>Telescope import<cr>", "Import" },
+  }
 
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
@@ -169,32 +169,20 @@ local function normal_keymap()
 end
 
 local function visual_keymap()
-  local keymap = {
-    g = {
-      name = "Git",
-      y = {
-        "<cmd>lua require'gitlinker'.get_buf_range_url('v', {action_callback = require'gitlinker.actions'.open_in_browser})<cr>",
-        "Link",
-      },
-    },
-    s = {
-      name = "Spectre",
-      w = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current work" },
-    },
-    r = {
-      name = "Refactor",
-      e = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], "Extract function" },
-      f = {
-        [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]],
-        "Extract Function to File",
-      },
-      v = { [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], "Extract Variable" },
-      i = { [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], "Inline Variable" },
-      r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-      V = { [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], "Debug Print Var" },
-    },
-  }
-  whichkey.register(keymap, v_opts)
+
+  whichkey.add({
+    -- Spectre
+    {"<leader>s", group="Spectre"},
+    {"<leader>sw","<esc><cmd>lua require('spectre').open_visual()<CR>", desc="Search current work"},
+    -- Refactor
+    {"<leader>r",group="Refactor"},
+    {"<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], desc="Extract function"},
+    {"<leader>rf",[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function to File')<CR>]], desc="Extract Function to File"},
+    {"<leader>rv",[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], desc="Extract Variable" },
+    {"<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], desc="Inline Variable" },
+    {"<leader>rr", [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], desc="Refactor" },
+    {"<leader>rV", [[ <Esc><Cmd>lua require('refactoring').debug.print_var({})<CR>]], desc="Debug Print Var" },
+  },v_opts)
 end
 
 local function code_keymap()

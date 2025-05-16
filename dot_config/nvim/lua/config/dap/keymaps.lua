@@ -1,6 +1,6 @@
 local M = {}
 
-local whichkey = require "which-key"
+local whichkey = require("which-key")
 
 function M.setup()
   local keymap = {
@@ -26,7 +26,7 @@ function M.setup()
       t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
       x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
       u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-    }
+    },
   }
 
   whichkey.register(keymap, {
@@ -35,7 +35,7 @@ function M.setup()
     buffer = nil,
     silent = true,
     noremap = true,
-    nowait = false
+    nowait = false,
   })
 
   local keymap_v = {

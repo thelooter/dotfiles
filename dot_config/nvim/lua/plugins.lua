@@ -145,14 +145,7 @@ function M.setup()
           build =
           "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
-        "nvim-telescope/telescope-project.nvim",
         "cljoly/telescope-repo.nvim",
-        {
-          "ahmedkhalf/project.nvim",
-          config = function()
-            require("project_nvim").setup({})
-          end,
-        },
         {
           "nvim-telescope/telescope-frecency.nvim",
           dependencies = {
@@ -410,7 +403,7 @@ function M.setup()
         "antoinemadec/FixCursorHold.nvim",
         "nvim-neotest/neotest-python",
         "nvim-neotest/neotest-plenary",
-        "nvim-neotest/neotest-go",
+        "fredrikaverpil/neotest-golang",
         "haydenmeade/neotest-jest",
         "nvim-neotest/neotest-vim-test",
         "andy-bell101/neotest-java",
@@ -442,7 +435,7 @@ function M.setup()
     },
 
     {
-      "anuvyklack/hydra.nvim",
+      "nvimtools/hydra.nvim",
       config = function()
         require("config.hydra").setup()
       end,
@@ -527,7 +520,6 @@ function M.setup()
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-        "3rd/image.nvim",          -- dependencies image support in preview window: See `# Preview Mode` for more information
       },
       config = function()
         require("neo-tree").setup({
@@ -665,6 +657,31 @@ function M.setup()
         -- VimTeX configuration goes here, e.g.
         vim.g.vimtex_view_method = "zathura"
       end,
+    },
+    {
+      "sopa0/telescope-makefile",
+    },
+    {
+      "grafana/vim-alloy",
+    },
+    { -- This plugin
+      "Zeioth/compiler.nvim",
+      cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+      dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
+      opts = {},
+    },
+    { -- The task runner we use
+      "stevearc/overseer.nvim",
+      commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
+      cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+      opts = {
+        task_list = {
+          direction = "bottom",
+          min_height = 25,
+          max_height = 25,
+          default_detail = 1,
+        },
+      },
     },
   })
 end

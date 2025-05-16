@@ -70,7 +70,7 @@ local servers = {
       },
     },
   },
-  tsserver = {
+  ts_ls = {
     disable_formatting = true,
     settings = {
       javascript = {
@@ -134,6 +134,15 @@ local servers = {
 -- }
 
 local function on_attach(client, bufnr)
+  -- Prevent duplicate LSP clients (by name) from attaching to the same buffer
+  for _, c in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+    if c.id ~= client.id and c.name == client.name then
+      vim.lsp.buf_detach_client(bufnr, client.id)
+      vim.notify("Prevented duplicate LSP client attachment: " .. client.name, vim.log.levels.WARN)
+      return
+    end
+  end
+
   -- Enable completion triggered by <C-X><C-O>
   -- See `:help omnifunc` and `:help ins-completion` for more information.
   vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", {
@@ -175,9 +184,7 @@ end
 
 local capabilities
 
-if PLUGINS.nvim_cmp.enabled then
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
-end
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
 
 local opts = {
   on_attach = on_attach,

@@ -83,6 +83,7 @@ plugins=(
     zsh-interactive-cd
     zsh-syntax-highlighting
     zsh-autosuggestions
+    alias-finder
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -138,13 +139,16 @@ alias htop="btop"
 alias vim="nvim"
 alias vi="nvim"
 alias grep="grep --color=auto"
+alias ssh="kitty +kitten ssh"
+alias kubectl="kubecolor"
+alias kube-pod-allocation="~/Documents/Scripts/Kubernetes/node_pod_allocation.sh"
 
 #alias yay="paru"
 #alias yeet="paru -Rcs"
 #alias gimme="paru -S"
 
-export PAGER="most"
-
+export PAGER="bat --paging=always --style=plain"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Options
 setopt GLOB_DOTS
@@ -159,16 +163,37 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 export GPG_TTY=$(tty)
 export GOPATH=$HOME/go
 export DOCKER_CONFIG=$HOME/.config/docker
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/tofu tofu
+complete -C '/usr/local/bin/aws_completer' aws
+hyfetch
 
-neofetch
-
+# Promt
 eval "$(starship init zsh)"
+# Better cd
 eval "$(zoxide init zsh --cmd cd)"
+# Shared shell history
 eval "$(atuin init zsh)"
-cd ~
+# mise
+eval "$(mise completion zsh)"
+# Fuck init
+eval $(thefuck --alias)
+
+# Kind Completions
+source <(kind completion zsh)
+
+# Warp CLI Completions
+source <(warp-cli generate-completions zsh 2>/dev/null)
+
+# Grafana alloy completions
+source <(alloy completion zsh)
+
+source <(glab completion -s zsh)
+
+# cd ~
+
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
@@ -184,4 +209,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+eval "$(/home/thelooter/.local/bin/mise activate zsh)"
+eval "$(/home/thelooter/.local/bin/mise hook-env)"
 
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default

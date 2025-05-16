@@ -2,14 +2,12 @@ local M = {}
 
 -- Find a file either using git files or search the filesystem.
 function M.find_files()
-  if PLUGINS.telescope.enabled then
-    local opts = {}
-    local telescope = require "telescope.builtin"
+  local opts = {}
+  local telescope = require("telescope.builtin")
 
-    local ok = pcall(telescope.git_files, opts)
-    if not ok then
-      telescope.find_files(opts)
-    end
+  local ok = pcall(telescope.git_files, opts)
+  if not ok then
+    telescope.find_files(opts)
   end
 end
 
@@ -34,10 +32,10 @@ end
 
 -- Find dotfiles
 function M.find_dotfiles()
-  require("telescope.builtin").find_files {
+  require("telescope.builtin").find_files({
     prompt_title = "<Dotfiles>",
     cwd = "$HOME/workspace/alpha2phi/dotfiles/",
-  }
+  })
 end
 
 return M

@@ -32,14 +32,17 @@ function M.setup()
     { name = "DiagnosticSignInfo", text = "" },
   }
 
-  for _, sign in ipairs(diagnostic_signs) do
-    vim.fn.sign_define(sign.name, {
-      texthl = sign.name,
-      text = sign.text,
-      numhl = sign.name
-    })
-
-  end
+  -- Set diagnostic signs using vim.diagnostic.config
+  vim.diagnostic.config({
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = diagnostic_signs[1].text,
+        [vim.diagnostic.severity.WARN]  = diagnostic_signs[2].text,
+        [vim.diagnostic.severity.HINT]  = diagnostic_signs[3].text,
+        [vim.diagnostic.severity.INFO]  = diagnostic_signs[4].text,
+      },
+    },
+  })
 
   -- diagnostic config
   vim.diagnostic.config(lsp.diagnostic)

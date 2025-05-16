@@ -19,6 +19,7 @@ local sources = {
   b.formatting.golines,
   b.formatting.npm_groovy_lint,
   require("none-ls.formatting.latexindent"),
+  b.formatting.ktlint,
   -- diagnostics
   b.diagnostics.markdownlint,
   -- b.diagnostics.eslint_d,

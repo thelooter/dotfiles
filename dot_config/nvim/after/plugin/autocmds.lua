@@ -4,7 +4,9 @@ if vim.fn.has "nvim-0.7" then
   -- Highlight on yank
   local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
   api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank()",
+    callback = function()
+      vim.hl.on_yank()
+    end,
     group = yankGrp,
   })
 
@@ -44,7 +46,7 @@ else
   cmd [[
     augroup YankHighlight
       autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+      autocmd TextYankPost * lua vim.hl.on_yank()
     augroup end
   ]]
 

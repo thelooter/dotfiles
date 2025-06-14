@@ -3,32 +3,32 @@ local M = {}
 local util = require("lspconfig.util")
 
 local servers = {
-  gopls = {
-    settings = {
-      gopls = {
-        hints = {
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          compositeLiteralTypes = true,
-          constantValues = true,
-          functionTypeParameters = true,
-          parameterNames = true,
-          rangeVariableTypes = true,
-        },
-        gofumpt = true,
-        codelenses = {
-          gc_details = false,
-          generate = true,
-          regenerate_cgo = true,
-          run_govulncheck = true,
-          test = true,
-          tidy = true,
-          upgrade_dependency = true,
-          vendor = true,
-        },
-      },
-    },
-  },
+  -- gopls = {
+  --   settings = {
+  --     gopls = {
+  --       hints = {
+  --         assignVariableTypes = true,
+  --         compositeLiteralFields = true,
+  --         compositeLiteralTypes = true,
+  --         constantValues = true,
+  --         functionTypeParameters = true,
+  --         parameterNames = true,
+  --         rangeVariableTypes = true,
+  --       },
+  --       gofumpt = true,
+  --       codelenses = {
+  --         gc_details = false,
+  --         generate = true,
+  --         regenerate_cgo = true,
+  --         run_govulncheck = true,
+  --         test = true,
+  --         tidy = true,
+  --         upgrade_dependency = true,
+  --         vendor = true,
+  --       },
+  --     },
+  --   },
+  -- },
   html = {},
   jsonls = {
     settings = {
@@ -116,7 +116,6 @@ local servers = {
   },
   cssls = {},
   emmet_ls = {},
-  volar = {},
   clangd = {
     cmd = {
       "clangd",
@@ -171,8 +170,8 @@ local function on_attach(client, bufnr)
     require("config.lsp.ts-utils").setup(client)
   end
 
-  local ih = require("inlay-hints")
-  ih.on_attach(client, bufnr)
+  --  local ih = require("inlay-hints")
+  --  ih.on_attach(client, bufnr)
 
   -- Configure for jdtls
   if client.name == "jdtls" then

@@ -37,7 +37,7 @@ function M.setup(servers, options)
 	for server_name, server_opts in pairs(servers) do
 		local opts = vim.tbl_deep_extend("force", options, server_opts or {})
 		if server_name == "rust_analyzer" then
-			local ih = require("inlay-hints")
+		--	local ih = require("inlay-hints")
 			require("rust-tools").setup({
 				tools = {
 					-- executor = require("rust-tools/executors").toggleterm,
@@ -49,7 +49,7 @@ function M.setup(servers, options)
 								vim.lsp.codelens.refresh()
 							end,
 						})
-						ih.set_all()
+		--				ih.set_all()
 					end,
 					inlay_hints = {
 						auto = false,
@@ -57,7 +57,9 @@ function M.setup(servers, options)
 				},
 			})
 			lspconfig.rust_analyzer.setup(opts)
-		else
+    elseif server_name == "gopls" then
+      require('lspconfig').gopls.setup(require'go.lsp'.config())
+	else
 			lspconfig[server_name].setup(opts)
 		end
 	end

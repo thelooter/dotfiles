@@ -256,12 +256,12 @@ function M.setup()
         },
         "b0o/schemastore.nvim",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
-        {
-          "simrat39/inlay-hints.nvim",
-          config = function()
-            require("inlay-hints").setup()
-          end,
-        },
+        --{
+        --  "simrat39/inlay-hints.nvim",
+        --  config = function()
+        --    require("inlay-hints").setup()
+        --  end,
+        --},
       },
     },
 
@@ -310,7 +310,9 @@ function M.setup()
       "ray-x/go.nvim",
       ft = { "go" },
       config = function()
-        require("go").setup()
+        require("go").setup {
+          lsp_cfg = true
+        }
       end,
     },
 

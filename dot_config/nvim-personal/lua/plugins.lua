@@ -58,7 +58,7 @@ function M.setup()
       "folke/which-key.nvim",
       event = "VimEnter",
       config = function()
-        require("config.whichkey").setup()
+        require("config.which-key-new").setup()
       end,
     },
 

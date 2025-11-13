@@ -17,33 +17,32 @@ local function keymappings(client, bufnr)
 
   -- Whichkey
   local keymap_l = {
-    l = {
-      name = "Code",
-      -- a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-      I = { "<cmd>LspInfo<CR>", "Lsp Info" },
-      i = { "<cmd>Telescope lsp_implementations<CR>", "Implementations" },
-      d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
-      f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
-      n = { "<cmd>Lspsaga rename<CR>", "Rename" },
-      h = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
-      r = { "<cmd>Telescope lsp_references<CR>", "References" },
-      t = { "<cmd>Trouble toggle diagnostics<CR>", "Trouble" },
-    },
+    {"<leader>l", group = "Code", buffer = bufnr},
+    -- {"<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", buffer = bufnr},
+    {"<leader>lI", "<cmd>LspInfo<CR>", desc = "Lsp Info", buffer = bufnr},
+    {"<leader>li", "<cmd>Telescope lsp_implementations<CR>", desc = "Implementations", buffer = bufnr},
+    {"<leader>ld", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics", buffer = bufnr},
+    {"<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", desc = "Finder", buffer = bufnr},
+    {"<leader>ln", "<cmd>Lspsaga rename<CR>", desc = "Rename", buffer = bufnr},
+    {"<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover Doc", buffer = bufnr},
+    {"<leader>lr", "<cmd>Telescope lsp_references<CR>", desc = "References", buffer = bufnr},
+    {"<leader>lt", "<cmd>Trouble toggle diagnostics<CR>", desc = "Trouble", buffer = bufnr},
   }
+  
   if client.server_capabilities.document_formatting then
-    keymap_l.l.f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" }
+    table.insert(keymap_l, {"<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", desc = "Format Document", buffer = bufnr})
   end
 
   local keymap_g = {
-    name = "Goto",
-    d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-    D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-    s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-    I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
-    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
+    {"gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", desc = "Definition", buffer = bufnr},
+    {"gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Declaration", buffer = bufnr},
+    {"gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help", buffer = bufnr},
+    {"gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Goto Implementation", buffer = bufnr},
+    {"gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Goto Type Definition", buffer = bufnr},
   }
-  whichkey.register(keymap_l, { buffer = bufnr, prefix = "<leader>" })
-  whichkey.register(keymap_g, { buffer = bufnr, prefix = "g" })
+  
+  whichkey.add(keymap_l)
+  whichkey.add(keymap_g)
 end
 
 function M.setup(client, bufnr)

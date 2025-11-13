@@ -45,8 +45,8 @@ function M.setup()
         require("dashboard").setup({
           hide = {
             statusline = false, -- hide statusline default is true
-            tabline = false, -- hide the tabline
-            winbar = false, -- hide winbar
+            tabline = false,    -- hide the tabline
+            winbar = false,     -- hide winbar
           },
         })
       end,
@@ -121,12 +121,13 @@ function M.setup()
     {
       "nvim-treesitter/nvim-treesitter",
       event = "BufRead",
-      make = ":TSUpdate",
+      branch = "main",
+      build = ":TSUpdate",
       config = function()
         require("config.treesitter").setup()
       end,
       dependencies = {
-        { "nvim-treesitter/nvim-treesitter-textobjects" },
+        -- { "nvim-treesitter/nvim-treesitter-textobjects" },
       },
     },
 
@@ -295,28 +296,20 @@ function M.setup()
       end,
     },
 
-    -- Rust
-    {
-      "simrat39/rust-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
-      ft = { "rust" },
-      config = function()
-        require("rust-tools").setup({})
-      end,
-    },
+    -- Rust (removed — rust-tools config caused startup issues)
 
     -- Go
     {
       "ray-x/go.nvim",
       ft = { "go" },
       config = function()
-        require("go").setup {
-          lsp_cfg = true
-        }
+        require("go").setup({
+          lsp_cfg = true,
+        })
       end,
     },
 
-    -- Debugging
+    -- Debugging1
     {
       "mfussenegger/nvim-dap",
       event = "BufReadPre",

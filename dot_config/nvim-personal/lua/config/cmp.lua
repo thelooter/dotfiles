@@ -89,6 +89,7 @@ function M.setup()
           Package = "",
           Boolean = "",
           Array = "",
+          PunctuationSpecial = "",
         },
       }),
     },

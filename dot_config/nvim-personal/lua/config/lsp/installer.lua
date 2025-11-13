@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup(servers, options)
-	local lspconfig = require("lspconfig")
 	local icons = require("config.icons")
 
 	require("mason").setup({
@@ -33,34 +32,15 @@ function M.setup(servers, options)
 		automatic_installation = false,
 	})
 
-	-- Set up each LSP server
+	-- Set up each LSP server using the new `vim.lsp.config` / `vim.lsp.enable` API
 	for server_name, server_opts in pairs(servers) do
 		local opts = vim.tbl_deep_extend("force", options, server_opts or {})
-		if server_name == "rust_analyzer" then
-		--	local ih = require("inlay-hints")
-			require("rust-tools").setup({
-				tools = {
-					-- executor = require("rust-tools/executors").toggleterm,
-					hover_actions = { border = "solid" },
-					on_initialized = function()
-						vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
-							pattern = { "*.rs" },
-							callback = function()
-								vim.lsp.codelens.refresh()
-							end,
-						})
-		--				ih.set_all()
-					end,
-					inlay_hints = {
-						auto = false,
-					},
-				},
-			})
-			lspconfig.rust_analyzer.setup(opts)
-    elseif server_name == "gopls" then
-      require('lspconfig').gopls.setup(require'go.lsp'.config())
-	else
-			lspconfig[server_name].setup(opts)
+		if server_name == "gopls" then
+			vim.lsp.config("gopls", require("go.lsp").config())
+			vim.lsp.enable("gopls")
+		else
+			vim.lsp.config(server_name, opts)
+			vim.lsp.enable(server_name)
 		end
 	end
 end

@@ -13,17 +13,18 @@ ZSH_THEME=""
 
 # Oh My Zsh plugins
 plugins=(
+    
     alias-finder
     ansible
     archlinux
     colored-man-pages
-    
     docker
     docker-compose
     git
     golang
     gradle
     rust
+    web-search
     zsh-autosuggestions
     zsh-interactive-cd
     zsh-syntax-highlighting
@@ -63,7 +64,9 @@ add_to_path() {
 add_to_path "$BUN_INSTALL/bin"
 add_to_path "${KREW_ROOT:-$HOME/.krew}/bin"
 add_to_path "$PNPM_HOME"
-
+add_to_path "$HOME/minio-binaries/"
+add_to_path "/root/.local/share/gem/ruby/3.4.0/bin"
+add_to_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
 # -----------------------------------------------------------------------------
 # FZF Configuration
 # -----------------------------------------------------------------------------
@@ -83,9 +86,12 @@ alias htop="btop"
 alias vim="nvim"
 alias vi="nvim"
 alias grep="grep --color=auto"
-alias ssh="kitty +kitten ssh"
+#alias ssh="kitty +kitten ssh"
 alias kubectl="kubecolor"
 alias kube-pod-allocation="~/Documents/Scripts/Kubernetes/node_pod_allocation.sh"
+
+# Unset gup alias, so we can use the gup tool
+unalias gup
 
 # Commented package manager aliases (uncomment if using paru)
 # alias yay="paru"

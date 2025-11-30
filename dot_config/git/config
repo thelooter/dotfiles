@@ -1,0 +1,151 @@
+# =============================================================================
+# Includes
+# =============================================================================
+[include]
+    # Extra Delta theme/features for Catppuccin Frappe
+    path = /home/thelooter/.config/delta/frappe.gitconfig
+
+
+# =============================================================================
+# Identity & Signing
+# =============================================================================
+[user]
+    name = thelooter
+    email = evekolb2204@gmail.com
+    signingkey = 59654F8F4931C7C5
+
+[gpg]
+    # Custom wrapper to avoid TTY issues during signing
+    program = /home/thelooter/Documents/Scripts/GnuPG/gpg-no-tty.sh
+
+[commit]
+    # Sign all commits by default
+	gpgsign = true
+
+[tag]
+
+
+# =============================================================================
+# Defaults & Core Behavior
+# =============================================================================
+[init]
+    # Default branch for new repos
+    defaultBranch = main
+
+[core]
+    # Editor for commit messages and rebase
+    editor = nvim
+
+    # Line-ending management:
+    # NOTE: You currently have BOTH 'autocrlf = input' and a misspelled 'autcrlf = true'
+    # 'autcrlf' is invalid; Git will ignore it. Keep ONE of these:
+    #   - autocrlf = input  (recommended on Linux/macOS; commit LF, do not modify checkout)
+    #   - autocrlf = true   (convert LF->CRLF on checkout, CRLF->LF on commit; Windows)
+    autocrlf = input
+
+    # Use delta for paging diffs
+    pager = delta
+
+# On Windows, include a Windows override file (if present)
+[includeIf "hasconfig:os=Windows_NT"]
+    path = ~/.gitconfig.windows
+# =============================================================================
+# Push & Credentials
+# =============================================================================
+[push]
+    # Automatically set upstream on first push
+    autoSetupRemote = true
+
+[credential "https://github.com"]
+    # Use GitHub CLI for credential helper; empty 'helper =' clears others
+    helper =
+    helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper =
+    helper = !/usr/bin/gh auth git-credential
+
+
+# =============================================================================
+# Diffs & Delta
+# =============================================================================
+[diff]
+    # Show moved code with default coloring
+    colorMoved = default
+
+[interactive]
+    # Let delta color interactive diffs
+    diffFilter = delta --color-only
+
+[delta]
+    # Navigation: 'n'/'N' between diff sections
+    navigate = true
+    # Side-by-side diffs
+    side-by-side = true
+    # Use the Catppuccin Frappe theme (provided by included config)
+    syntax-theme = Catppuccin-frappe
+    # Map styles to syntax groups
+    map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+    # Enable decoration features bundle
+    features = decorations catppuccin-frappe
+    # Force true-color
+    true-color = always
+    # light = true  # Uncomment if you prefer a light variant
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = yellow box
+
+
+# =============================================================================
+# Merge & Mergetool
+# =============================================================================
+[merge]
+    tool = intellij
+
+[mergetool "intellij"]
+    # Launch IntelliJ’s merge tool with absolute paths
+    cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    trustExitCode = true
+
+
+# =============================================================================
+# Aliases
+# =============================================================================
+[alias]
+    # Pretty, graph log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+    # Stash everything (tracked + untracked + ignored)
+    staash = stash --all
+
+    # Custom branch helper script
+    bb = !/home/thelooter/Documents/Scripts/Git/better-git-branch.sh
+
+
+# =============================================================================
+# Safety
+# =============================================================================
+[safe]
+    # Allow Git operations in these directories without safety prompts
+    directory = /opt/flutter
+    directory = /home/thelooter/Documents/Coding/Java/Minecraft/Plugins/MockBukkit
+    directory = /app
+    directory = .
+
+
+# =============================================================================
+# Rerere & Maintenance
+# =============================================================================
+[rerere]
+    # Reuse recorded conflict resolutions
+    enabled = true
+
+[maintenance]
+    # Repositories included in background maintenance (gc, fetch, etc.)
+    repo = /home/thelooter/Documents/Coding/Ruby/gitlab_dev/gdk
+    repo = /home/thelooter/Documents/Coding/Ruby/gitlab_dev/gdk/gitlab
+    repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk
+    repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk/gitlab

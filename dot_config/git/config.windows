@@ -1,0 +1,3 @@
+[core]
+    # Convert LF->CRLF on checkout, CRLF->LF on commit
+    autocrlf = true

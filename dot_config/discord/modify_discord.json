@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+# --- CONFIGURATION ---
+ENABLE_DEVTOOLS=true
+SKIP_HOST_UPDATES=true
+# --- END CONFIG ---
+
+# Validate jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is required but not installed" >&2
+    exit 1
+fi
+
+# Process JSON
+jq --argjson devtools "$ENABLE_DEVTOOLS" \
+   --argjson skip "$SKIP_HOST_UPDATES" \
+   '.DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = $devtools | .SKIP_HOST_UPDATE = $skip'
+

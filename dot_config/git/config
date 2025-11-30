@@ -120,6 +120,7 @@
 
     # Stash everything (tracked + untracked + ignored)
     staash = stash --all
+    staash-clean = !/home/thelooter/Documents/Scripts/Git/stash-clean.sh
 
     # Custom branch helper script
     bb = !/home/thelooter/Documents/Scripts/Git/better-git-branch.sh

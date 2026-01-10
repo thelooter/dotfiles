@@ -90,8 +90,6 @@ alias grep="grep --color=auto"
 alias kubectl="kubecolor"
 alias kube-pod-allocation="~/Documents/Scripts/Kubernetes/node_pod_allocation.sh"
 
-# Unset gup alias, so we can use the gup tool
-unalias gup
 
 # Commented package manager aliases (uncomment if using paru)
 # alias yay="paru"

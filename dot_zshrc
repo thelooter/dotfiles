@@ -129,6 +129,8 @@ command -v k8sgpt > /dev/null && source <(k8sgpt completion zsh)
 # Set kubecolor to use kubectl completions
 compdef kubecolor=kubectl
 
+# bun completions
+[ -s "/home/thelooter/.bun/_bun" ] && source "/home/thelooter/.bun/_bun"
 # -----------------------------------------------------------------------------
 # External Tool Initialization
 # -----------------------------------------------------------------------------
@@ -157,6 +159,8 @@ command -v thefuck >/dev/null && eval "$(thefuck --alias)"
 # Display system info
 command -v hyfetch >/dev/null && hyfetch
 
+# Added by GDK bootstrap
+eval "$(/home/thelooter/.local/bin/mise activate zsh)"
 # -----------------------------------------------------------------------------
 # Plugin Configuration
 # -----------------------------------------------------------------------------

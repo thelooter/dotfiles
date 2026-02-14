@@ -108,11 +108,13 @@ COMPLETION_WAITING_DOTS="true"
 # -----------------------------------------------------------------------------
 # Completions Setup
 # -----------------------------------------------------------------------------
-# Enable bash completions
-autoload -U +X bashcompinit && bashcompinit
 
 # Add custom completions to fpath
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=~/.zfunc
+
+# Enable bash completions
+autoload -U +X bashcompinit && bashcompinit
 
 # Tool completions
 [[ -x /usr/bin/tofu ]] && complete -o nospace -C /usr/bin/tofu tofu

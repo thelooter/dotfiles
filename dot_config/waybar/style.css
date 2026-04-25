@@ -1,0 +1,384 @@
+* {
+	/* `otf-font-awesome` required for icons */
+	font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
+
+/* Catppuccin Frappé palette */
+window#waybar {
+	/* translucent glass card */
+	background-color: rgba(48, 52, 70, 0.6);
+	/* base #303446 */
+	border: 2px solid rgba(131, 139, 167, 0.35);
+	/* overlay1 #838ba7 */
+	border-radius: 999px;
+	color: #c6d0f5;
+	/* text */
+
+	/* floating spacing around the bar */
+	padding: 0 12px;
+
+	/* rounded "soft" shadow */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+	transition-property: background-color, opacity, border-color;
+	transition-duration: 0.25s;
+}
+
+/* hidden state */
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+/* chromium override (kept from your old CSS) */
+window#waybar.chromium {
+	background-color: #000000;
+	border: none;
+}
+
+window#waybar.empty #window {
+	background-color: transparent;
+}
+
+/* Buttons: underline hover style */
+button {
+	box-shadow: inset 0 -3px transparent;
+	border: none;
+	border-radius: 999px;
+	padding: 0;
+}
+
+button:hover {
+	background: inherit;
+	box-shadow: inset 0 -3px rgba(198, 208, 245, 0.9);
+	/* text */
+}
+
+/* Workspaces / focused / urgent */
+#window,
+#workspaces {
+	margin: 0 4px;
+}
+
+#workspaces button {
+	padding: 2px 10px;
+	background-color: transparent;
+	color: #c6d0f5;
+	border-radius: 999px;
+	margin: 10px 3px;
+}
+
+#workspaces button label {
+	margin-top: 2px;
+}
+
+#workspaces button:hover {
+	background-color: rgba(0, 0, 0, 0.12);
+}
+
+#workspaces button.active {
+	background-color: rgba(140, 170, 238, 0.25);
+	/* blue */
+	box-shadow: inset 0 0 0 1px #8caaee;
+	border-bottom: none;
+}
+
+#workspaces button.urgent {
+	background-color: rgba(231, 130, 132, 0.85);
+	/* red */
+	color: #232634;
+	/* crust */
+}
+
+/* Optional “mode” module */
+#mode {
+	background-color: rgba(131, 139, 167, 0.22);
+	/* overlay1 */
+	box-shadow: inset 0 -3px rgba(198, 208, 245, 0.9);
+}
+
+/* Modules you had themed before */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd,
+#custom-power {
+	color: #c6d0f5;
+	/* text */
+	border-radius: 999px;
+	border: 1px solid rgba(131, 139, 167, 0.18);
+}
+
+/* Background “card” tone per module */
+#clock {
+	background-color: rgba(131, 139, 167, 0.16);
+}
+
+#battery {
+	background-color: rgba(140, 170, 238, 0.16);
+	/* blue */
+	color: #c6d0f5;
+}
+
+#battery.charging,
+#battery.plugged {
+	background-color: rgba(166, 209, 137, 0.7);
+	/* green */
+	color: #232634;
+	/* crust */
+}
+
+@keyframes blink {
+	to {
+		background-color: #e78284;
+		/* red */
+		color: #232634;
+		/* crust */
+	}
+}
+
+#battery.critical:not(.charging) {
+	background-color: #e78284;
+	/* red */
+	color: #232634;
+	/* crust */
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+/* power-profiles-daemon (keep selector; adapt to frappe) */
+#power-profiles-daemon {
+	padding-right: 15px;
+}
+
+#power-profiles-daemon.performance {
+	background-color: rgba(231, 130, 132, 0.85);
+	/* red */
+	color: #232634;
+}
+
+#power-profiles-daemon.balanced {
+	background-color: rgba(140, 170, 238, 0.55);
+	/* blue */
+	color: #232634;
+}
+
+#power-profiles-daemon.power-saver {
+	background-color: rgba(129, 200, 190, 0.55);
+	/* teal */
+	color: #232634;
+}
+
+/* Idle inhibitor */
+#idle_inhibitor {
+	background-color: rgba(35, 38, 52, 0.35);
+	/* crust-ish */
+	color: #b5bfe2;
+	/* subtext1 */
+}
+
+#idle_inhibitor.activated {
+	background-color: rgba(198, 208, 245, 0.55);
+	/* text */
+	color: #232634;
+	/* crust */
+}
+
+/* CPU + Memory + Network */
+#cpu {
+	background-color: rgba(166, 209, 137, 0.85);
+	/* green */
+	color: #232634;
+	font-weight: 700;
+}
+
+#memory {
+	background-color: rgba(202, 158, 230, 0.38);
+	/* mauve */
+	color: #c6d0f5;
+}
+
+#network {
+	background-color: rgba(140, 170, 238, 0.35);
+	/* blue */
+	color: #c6d0f5;
+}
+
+#network.disconnected {
+	background-color: rgba(231, 130, 132, 0.85);
+	/* red */
+	color: #232634;
+}
+
+/* PulseAudio */
+#pulseaudio {
+	background-color: rgba(229, 200, 144, 0.75);
+	/* yellow */
+	color: #232634;
+	/*padding: 5px 8px; */
+	min-width: 120px;
+}
+
+#pulseaudio.muted {
+	background-color: rgba(149, 156, 187, 0.35);
+	/* overlay2 */
+	color: #a5adce;
+	/* subtext0 */
+}
+
+/* WirePlumber */
+#wireplumber {
+	background-color: rgba(244, 184, 228, 0.3);
+	/* pink */
+	color: #c6d0f5;
+}
+
+#wireplumber.muted {
+	background-color: rgba(231, 130, 132, 0.7);
+	/* red */
+	color: #232634;
+}
+
+/* tray icons */
+#tray {
+	background-color: rgba(140, 170, 238, 0.22);
+	/* blue */
+	border-radius: 999px;
+}
+
+#tray>.passive {
+	-gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+	-gtk-icon-effect: highlight;
+	background-color: rgba(231, 130, 132, 0.85);
+	/* red */
+}
+
+/* custom/media from your config */
+#custom-media {
+	background-color: rgba(129, 200, 190, 0.35);
+	color: #232634;
+	min-width: 90px;
+	/* reduce width pressure */
+	font-weight: 600;
+	border-radius: 999px;
+	padding: 5px 10px;
+}
+
+#custom-media.custom-spotify {
+	background-color: rgba(140, 170, 238, 0.35);
+	/* blue */
+	color: #232634;
+}
+
+#custom-media.custom-vlc {
+	background-color: rgba(239, 159, 118, 0.35);
+	/* peach */
+	color: #232634;
+}
+
+/* custom/power from your config */
+#custom-power {
+	background-color: rgba(231, 130, 132, 0.25);
+	/* red tint */
+	color: #c6d0f5;
+	border-radius: 999px;
+	min-width: 40px;
+	font-weight: 600;
+}
+
+/* MPD */
+#mpd {
+	background-color: rgba(129, 200, 190, 0.35);
+	/* teal */
+	color: #232634;
+}
+
+#mpd.disconnected {
+	background-color: rgba(231, 130, 132, 0.85);
+	/* red */
+	color: #232634;
+}
+
+#mpd.stopped {
+	background-color: rgba(149, 156, 187, 0.4);
+	/* overlay2 */
+	color: #232634;
+}
+
+#mpd.paused {
+	background-color: rgba(239, 159, 118, 0.35);
+	/* peach */
+	color: #232634;
+}
+
+/* focus outline style */
+label:focus {
+	background-color: transparent;
+}
+
+#keyboard-state {
+	margin: 0 0;
+	border: 1px solid rgba(131, 139, 167, 0.18);
+	background-color: rgba(131, 139, 167, 0.16);
+	color: #c6d0f5;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd,
+#custom-power,
+#keyboard-state {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	margin: 10px 3px;
+	border-radius: 999px;
+}
+
+#pulseaudio {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#custom-power {
+	margin-right: 10px;
+}
+
+#workspaces {
+	margin-left: 10px;
+}

@@ -63,10 +63,11 @@ add_to_path() {
 # Add directories to PATH
 add_to_path "$BUN_INSTALL/bin"
 add_to_path "${KREW_ROOT:-$HOME/.krew}/bin"
-add_to_path "$PNPM_HOME"
+#add_to_path "$PNPM_HOME"
 add_to_path "$HOME/minio-binaries/"
 add_to_path "/root/.local/share/gem/ruby/3.4.0/bin"
 add_to_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
+add_to_path "$HOME/.config/goose/mcp-hermit/bin"
 # -----------------------------------------------------------------------------
 # FZF Configuration
 # -----------------------------------------------------------------------------
@@ -109,9 +110,6 @@ COMPLETION_WAITING_DOTS="true"
 # Completions Setup
 # -----------------------------------------------------------------------------
 
-# Add custom completions to fpath
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath+=~/.zfunc
 
 # Enable bash completions
 autoload -U +X bashcompinit && bashcompinit

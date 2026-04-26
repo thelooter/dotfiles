@@ -1,0 +1,8 @@
+[settings]
+idiomatic_version_file_enable_tools = ["ruby", "ruby"]
+
+[settings.ruby]
+compile = false
+
+[tools]
+usage = "latest"

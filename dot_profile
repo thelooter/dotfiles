@@ -1,0 +1,9 @@
+# Added by Toolbox App
+export PATH="$PATH:/home/thelooter/.local/share/JetBrains/Toolbox/scripts"
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/thelooter/.lmstudio/bin"
+
+. "$HOME/.local/share/../bin/env"

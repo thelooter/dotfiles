@@ -1,0 +1,30 @@
+# ============================================================
+# Common ignores (generic runtime/editor/OS junk)
+# Matches the TARGET paths.
+# ============================================================
+
+**/*.swp
+**/*.swo
+
+.DS_Store
+Thumbs.db
+
+**/*.tmp
+**/*.temp
+
+**/*.log
+**/*crash*.log
+
+**/*.bak
+
+
+# ============================================================
+# Zed runtime state
+# Ignore the temp files inside ~/.config/zed that get created while Zed runs.
+# Keep:
+# - themes/
+# - settings.json
+# ============================================================
+
+.config/zed/.tmp*
+.config/zed/.tmp*/**

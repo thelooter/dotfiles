@@ -13,7 +13,6 @@ ZSH_THEME=""
 
 # Oh My Zsh plugins
 plugins=(
-    
     alias-finder
     ansible
     archlinux
@@ -26,6 +25,7 @@ plugins=(
     rust
     web-search
     zsh-autosuggestions
+    zsh-defer
     zsh-interactive-cd
     zsh-syntax-highlighting
 )
@@ -61,13 +61,15 @@ add_to_path() {
 }
 
 # Add directories to PATH
-add_to_path "$BUN_INSTALL/bin"
-add_to_path "${KREW_ROOT:-$HOME/.krew}/bin"
 #add_to_path "$PNPM_HOME"
-add_to_path "$HOME/minio-binaries/"
-add_to_path "/root/.local/share/gem/ruby/3.4.0/bin"
-add_to_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
+add_to_path "$BUN_INSTALL/bin"
+add_to_path "$HOME/.cargo/bin/"
 add_to_path "$HOME/.config/goose/mcp-hermit/bin"
+add_to_path "$HOME/.local/share/gem/ruby/3.4.0/bin"
+add_to_path "$HOME/.local/share/pnpm"
+add_to_path "$HOME/minio-binaries/"
+add_to_path "${KREW_ROOT:-$HOME/.krew}/bin"
+add_to_path "/root/.local/share/gem/ruby/3.4.0/bin"
 # -----------------------------------------------------------------------------
 # FZF Configuration
 # -----------------------------------------------------------------------------
@@ -81,15 +83,15 @@ export FZF_DEFAULT_OPTS=" \
 # -----------------------------------------------------------------------------
 # Aliases
 # -----------------------------------------------------------------------------
-alias cat="bat --theme=Catppuccin-frappe"
-alias ls="lsd"
-alias htop="btop"
-alias vim="nvim"
-alias vi="nvim"
-alias grep="grep --color=auto"
 #alias ssh="kitty +kitten ssh"
-alias kubectl="kubecolor"
+alias cat="bat --theme=Catppuccin-frappe"
+alias grep="grep --color=auto"
+alias htop="btop"
 alias kube-pod-allocation="~/Documents/Scripts/Kubernetes/node_pod_allocation.sh"
+alias kubectl="kubecolor"
+alias ls="lsd"
+alias vi="nvim"
+alias vim="nvim"
 
 
 # Commented package manager aliases (uncomment if using paru)
@@ -112,31 +114,34 @@ COMPLETION_WAITING_DOTS="true"
 
 
 # Enable bash completions
-autoload -U +X bashcompinit && bashcompinit
+fpath=(~/.zfunc $fpath)
+
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
 
 # Tool completions
 [[ -x /usr/bin/tofu ]] && complete -o nospace -C /usr/bin/tofu tofu
 [[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
 
 # Source completions (with error handling)
-command -v kubectl >/dev/null && source <(kubectl completion zsh)
-command -v kind >/dev/null && source <(kind completion zsh)
-command -v warp-cli >/dev/null && source <(warp-cli generate-completions zsh 2>/dev/null)
 command -v alloy >/dev/null && source <(alloy completion zsh)
 command -v glab >/dev/null && source <(glab completion -s zsh)
 command -v k8sgpt > /dev/null && source <(k8sgpt completion zsh)
+command -v kind >/dev/null && source <(kind completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
+command -v warp-cli >/dev/null && source <(warp-cli generate-completions zsh 2>/dev/null)
 
 # Set kubecolor to use kubectl completions
 compdef kubecolor=kubectl
 
-# bun completions
-[ -s "/home/thelooter/.bun/_bun" ] && source "/home/thelooter/.bun/_bun"
 # -----------------------------------------------------------------------------
 # External Tool Initialization
 # -----------------------------------------------------------------------------
 # SDKMAN
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-
+if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+  zsh-defer source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
 # Bun completions
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
@@ -147,14 +152,14 @@ compdef kubecolor=kubectl
 command -v mise >/dev/null && {
     eval "$(mise completion zsh)"
     eval "$(mise activate zsh)"
-    eval "$(mise hook-env)"
+    zsh-defer eval "$(mise hook-env)"
 }
 
 # Modern shell enhancements
-command -v starship >/dev/null && eval "$(starship init zsh)"
-command -v zoxide >/dev/null && eval "$(zoxide init zsh --cmd cd)"
 command -v atuin >/dev/null && eval "$(atuin init zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
 command -v thefuck >/dev/null && eval "$(thefuck --alias)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh --cmd cd)"
 
 # Display system info
 command -v hyfetch >/dev/null && hyfetch
@@ -166,9 +171,9 @@ eval "$(/home/thelooter/.local/bin/mise activate zsh)"
 # -----------------------------------------------------------------------------
 # Alias finder plugin settings
 zstyle ':omz:plugins:alias-finder' autoload yes
-zstyle ':omz:plugins:alias-finder' longer yes
-zstyle ':omz:plugins:alias-finder' exact yes
 zstyle ':omz:plugins:alias-finder' cheaper yes
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:alias-finder' longer yes
 
 
 # -----------------------------------------------------------------------------

@@ -145,8 +145,6 @@
     enabled = true
 
 [maintenance]
+	repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk
+	repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk/gitlab
     # Repositories included in background maintenance (gc, fetch, etc.)
-    repo = /home/thelooter/Documents/Coding/Ruby/gitlab_dev/gdk
-    repo = /home/thelooter/Documents/Coding/Ruby/gitlab_dev/gdk/gitlab
-    repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk
-    repo = /home/thelooter/Documents/Coding/Projects/Gitlab/gdk/gitlab

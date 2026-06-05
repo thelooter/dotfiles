@@ -80,8 +80,11 @@ function M.setup()
     },
 
     -- Better Comment
+    -- Disabled: Neovim 0.10+ has built-in gc/gcc commenting. Comment.nvim is
+    -- archived and throws "[Comment.nvim] nil" on Neovim 0.11+.
     {
       "numToStr/Comment.nvim",
+      enabled = false,
     },
 
     -- Better surround
@@ -115,19 +118,23 @@ function M.setup()
       dependencies = {
         "nvim-web-devicons",
         "nvim-treesitter",
+        "catppuccin/nvim",
       },
     },
-    -- Treesitter
+    -- Treesitter (main branch = the 0.12 rewrite). NOTE: the main branch does
+    -- NOT support lazy-loading, so this must stay `lazy = false`.
     {
       "nvim-treesitter/nvim-treesitter",
-      event = "BufRead",
+      lazy = false,
       branch = "main",
       build = ":TSUpdate",
       config = function()
         require("config.treesitter").setup()
       end,
       dependencies = {
-        -- { "nvim-treesitter/nvim-treesitter-textobjects" },
+        -- Textobjects also has a `main` branch matching the rewrite; it must
+        -- track the same branch as nvim-treesitter.
+        { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
       },
     },
 
@@ -223,18 +230,23 @@ function M.setup()
       end,
     },
 
-    -- Auto tag
+    -- Auto-close / auto-rename HTML/JSX/TSX/XML tags. Uses Neovim's built-in
+    -- treesitter (not the removed module system), so it needs the relevant
+    -- parsers — which config/treesitter.lua installs. Must call setup().
     {
       "windwp/nvim-ts-autotag",
-      dependencies = "nvim-treesitter",
+      ft = {
+        "html", "xml", "markdown", "javascript", "javascriptreact",
+        "typescript", "typescriptreact", "vue", "svelte", "php",
+      },
+      config = function()
+        require("nvim-ts-autotag").setup()
+      end,
     },
 
-    -- End wise
-    {
-      "RRethy/nvim-treesitter-endwise",
-      dependencies = "nvim-treesitter",
-      event = "InsertEnter",
-    },
+    -- (nvim-treesitter-endwise removed: it's a master-branch *module* and the
+    -- `main` rewrite dropped the module system. nvim-autopairs still provides
+    -- the endwise-lua rule via config/autopairs.lua.)
 
     -- LSP
     {
@@ -256,7 +268,6 @@ function M.setup()
           end,
         },
         "b0o/schemastore.nvim",
-        "jose-elias-alvarez/nvim-lsp-ts-utils",
         --{
         --  "simrat39/inlay-hints.nvim",
         --  config = function()
@@ -549,6 +560,9 @@ function M.setup()
         "BufReadPre",
         "BufNewFile",
       },
+      config = function()
+        require("config.gitsigns").setup()
+      end,
     },
 
     {

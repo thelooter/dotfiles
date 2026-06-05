@@ -9,7 +9,7 @@ local function configure()
       numhl = "",
     },
     rejected = {
-      text = "",
+      text = "",
       texthl = "LspDiagnosticsSignHint",
       linehl = "",
       numhl = "",

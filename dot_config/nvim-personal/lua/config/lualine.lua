@@ -53,7 +53,7 @@ local function lsp_client(msg)
   vim.list_extend(buf_client_names, supported_linters)
 
   -- add hover
-  local hovers = require("config.lsp.null-ls.hover")
+  local hovers = require("config.lsp.null-ls.hovers")
   local supported_hovers = hovers.list_registered(buf_ft)
 
   vim.list_extend(buf_client_names, supported_hovers)
@@ -93,11 +93,12 @@ end
 
 function M.setup()
   local navic = require("nvim-navic")
+  local palettes = require("catppuccin.palettes")
 
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = "catppuccin",
+      theme = "catppuccin-nvim",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
@@ -124,9 +125,10 @@ function M.setup()
           navic.get_location(),
           cond = navic.is_available,
         },
-        -- { separator },
-        -- { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
-        -- { lsp_progress },
+        { lsp_client, icon = " ", color = function()
+          -- no-arg get_palette() follows the active catppuccin flavour
+          return { fg = palettes.get_palette().mauve, gui = "bold" }
+        end },
       },
       lualine_x = { "encoding", "fileformat", "filetype" },
       -- lualine_y = { "progress" },

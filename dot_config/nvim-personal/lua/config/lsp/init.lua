@@ -162,10 +162,6 @@ local function on_attach(client, bufnr)
 		navic.attach(client, bufnr)
 	end
 
-	if client.name == "tsserver" then
-		require("config.lsp.ts-utils").setup(client)
-	end
-
 	--  local ih = require("inlay-hints")
 	--  ih.on_attach(client, bufnr)
 

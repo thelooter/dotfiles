@@ -41,3 +41,14 @@ keymap("n", "<Down>", ":resize +1<CR>", default_opts)
 keymap("n", "<C-n>", ":Neotree toggle<CR>", default_opts)
 
 keymap("n", "<tab>", ":BufferLineCycleNext <CR>", default_opts)
+
+-- QWERTZ ergonomics: the `[` / `]` motion family sits behind AltGr+8 / AltGr+9
+-- on a German layout. Remap the keys in the same *physical* position (the two
+-- right of `p`): `ü` -> `[` and `+` -> `]`.
+-- These are intentionally REMAPPABLE (remap = true, not noremap) so the whole
+-- family keeps resolving through them: textobjects motions (]m/[m, ]]/[[, ...),
+-- diagnostics (]d/[d), gitsigns hunks (]c/[c), quickfix (]q/[q), etc. The
+-- original `[`/`]` keep working via AltGr; this only adds easier aliases.
+-- Trade-off: the builtin `+` (first non-blank of next line) is shadowed.
+vim.keymap.set({ "n", "x", "o" }, "ü", "[", { remap = true, silent = true, desc = "[ (QWERTZ position)" })
+vim.keymap.set({ "n", "x", "o" }, "+", "]", { remap = true, silent = true, desc = "] (QWERTZ position)" })

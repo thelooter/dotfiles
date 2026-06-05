@@ -1,0 +1,2 @@
+# Askpass helper for sudo -A (GUI password prompt via zenity) 
+export SUDO_ASKPASS="$HOME/.local/lib/sudo-askpass/zenity-askpass.sh"

@@ -104,6 +104,13 @@
 # =============================================================================
 [merge]
     tool = intellij
+    # Show the base version inside conflict markers (what `mergiraf solve` wants)
+    conflictStyle = diff3
+
+[merge "mergiraf"]
+    # Syntax-aware merge driver; enabled per file type in ~/.config/git/attributes
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 
 [mergetool "intellij"]
     # Launch IntelliJ’s merge tool with absolute paths
@@ -124,6 +131,11 @@
 
     # Custom branch helper script
     bb = !/home/thelooter/Documents/Scripts/Git/better-git-branch.sh
+
+    # Structural diffs via difftastic (delta stays the default; less, because delta can't parse difft output)
+    ddiff = -c diff.external=difft -c core.pager='less -FRX' diff
+    dshow = -c diff.external=difft -c core.pager='less -FRX' show --ext-diff
+    dlog = -c diff.external=difft -c core.pager='less -FRX' log -p --ext-diff
 
 
 # =============================================================================

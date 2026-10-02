@@ -1,6 +1,6 @@
 * {
-	/* `otf-font-awesome` required for icons */
-	font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+	/* JetBrainsMono Nerd Font: monospace text + full icon glyph range */
+	font-family: "JetBrainsMono Nerd Font", FontAwesome, monospace;
 	font-size: 13px;
 }
 
@@ -69,7 +69,7 @@ button:hover {
 }
 
 #workspaces button label {
-	margin-top: 2px;
+	margin-top: 0;
 }
 
 #workspaces button:hover {
@@ -193,6 +193,14 @@ button:hover {
 	/* subtext1 */
 }
 
+/* idle_inhibitor is a bare label whose padding is set by the shared module
+   rule lower in this file; override with higher specificity to win. The eye
+   glyph sits ~3px right of center, so trim left / pad right to re-center. */
+window#waybar #idle_inhibitor {
+	padding-left: 7px;
+	padding-right: 13px;
+}
+
 #idle_inhibitor.activated {
 	background-color: rgba(198, 208, 245, 0.55);
 	/* text */
@@ -224,6 +232,18 @@ button:hover {
 	background-color: rgba(231, 130, 132, 0.85);
 	/* red */
 	color: #232634;
+}
+
+/* Net throughput: monospace (inherited) keeps digits tabular so the pill
+   never reflows as the rate changes. */
+#custom-netspeed {
+	background-color: rgba(129, 200, 190, 0.30);
+	/* teal */
+	color: #c6d0f5;
+	padding: 2px 10px;
+	margin: 10px 3px;
+	border-radius: 999px;
+	border: 1px solid rgba(131, 139, 167, 0.18);
 }
 
 /* PulseAudio */

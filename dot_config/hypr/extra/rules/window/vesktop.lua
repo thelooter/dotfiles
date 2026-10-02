@@ -1,0 +1,6 @@
+hl.window_rule({
+    name  = "vesktop_workspace",
+    match = { initial_class = "vesktop" },
+
+    workspace = "8 silent",
+})

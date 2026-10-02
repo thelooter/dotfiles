@@ -23,9 +23,17 @@
 		"idle_inhibitor",
 		"pulseaudio",
 		"network",
+		"custom/netspeed",
 		"cpu",
 		"memory",
-		"keyboard-state",
+		// "keyboard-state" is disabled: it scans every node in /dev/input at
+		// startup to find a keyboard, which blocks waybar's main loop for ~1.8s
+		// on this machine (34 devices, ~50ms per open). gtk-layer-shell gives up
+		// waiting for the compositor's .configure after ~1s, so the second bar is
+		// silently dropped and waybar comes up on only one monitor. Setting
+		// "device-path" does NOT help -- waybar scans all devices regardless.
+		// The config block below is kept so this is a one-line revert.
+		// "keyboard-state",
 		"hyprland/language",
 		"clock",
 		"tray",
@@ -118,11 +126,16 @@
 	"network": {
 		// "interface": "wlp2*", // (Optional) To force the use of this interface
 		"format-wifi": "{essid} ({signalStrength}%) ",
-		"format-ethernet": "{ipaddr}/{cidr} ",
-		"tooltip-format": "{ifname} via {gwaddr} ",
+		"format-ethernet": "{ipaddr}/{cidr} 󰈀",
+		"tooltip-format": "{ifname} via {gwaddr}",
 		"format-linked": "{ifname} (No IP) ",
 		"format-disconnected": "Disconnected ⚠",
 		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+	"custom/netspeed": {
+		"exec": "$HOME/.config/waybar/netspeed.sh",
+		"restart-interval": 3,
+		"tooltip": false
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float

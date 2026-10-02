@@ -284,6 +284,23 @@ function M.setup()
       },
     },
 
+    -- config-lsp: LSP for system config files (fstab, ssh_config, hosts, etc).
+    -- Self-installs the `config-lsp` binary and self-registers filetypes/LSP,
+    -- so it's not wired through the shared on_attach in config.lsp.init.
+    {
+      "Myzel394/config-lsp.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      opts = {
+        executable = {
+          path = nil,
+          args = { "--no-undetectable-errors" },
+          download_folder = vim.fn.stdpath("data") .. "/config-lsp/bin",
+        },
+        inject_lsp = true,
+        add_filetypes = true,
+      },
+    },
+
     -- trouble.nvim
     {
       "folke/trouble.nvim",

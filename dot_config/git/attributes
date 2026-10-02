@@ -1,0 +1,2 @@
+# Mergiraf falls back to git's line-based merge for file types it can't parse
+* merge=mergiraf

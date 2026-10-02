@@ -1,0 +1,7 @@
+# Selene standard library definition for Hyprland's `hl` Lua config API.
+# `any: true` allows hl to be indexed/called freely; real type checking
+# comes from lua-language-server via /usr/share/hypr/stubs (see .luarc.json).
+---
+globals:
+  hl:
+    any: true

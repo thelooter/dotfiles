@@ -19,6 +19,10 @@
 		"title",
 		"separator",
 		{
+			"type": "cpu",
+			"format": "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}"
+		},
+		{
 			"type": "memory",
 			"key": "Memory",
 			"percent": {
@@ -30,17 +34,18 @@
 		"swap",
 		"disk",
 		"gpu",
+		"kernel",
+		"os",
+		{
+			"type": "command",
+			"key": "OS Age",
+			"text": "birth_install=$(stat -c %W /); current=$(date +%s); days_difference=$(( (current - birth_install) / 86400 )); birthday=$(date -d @$birth_install '+%d %b %Y'); echo \"${days_difference} days | ${birthday}\""
+		},
+		"uptime",
 		{
 			"type": "colors",
 			"paddingLeft": 11,
 			"symbol": "circle"
-		},
-		"kernel",
-		"os",
-		"uptime",
-		{
-			"type": "cpu",
-			"format": "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}"
 		}
 	]
 }

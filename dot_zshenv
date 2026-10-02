@@ -1,2 +1,13 @@
 # Askpass helper for sudo -A (GUI password prompt via zenity) 
 export SUDO_ASKPASS="$HOME/.local/lib/sudo-askpass/zenity-askpass.sh"
+
+# Copilot OpenTelemetry
+export COPILOT_OTEL_ENABLED=true
+export COPILOT_OTEL_EXPORTER_TYPE=file
+export COPILOT_OTEL_FILE_EXPORTER_PATH="$HOME/.copilot/otel/copilot-otel-$(date +%Y%m%d%H%M%S).jsonl"
+
+# HashiCorp Vault CLI (homelab, VM 145). Verified TLS: the server cert is now
+# signed by the homelab CA (~/.config/homelab-ca/ca.crt). Address by IP — the
+# hostname doesn't resolve here yet, but it's a cert SAN.
+export VAULT_ADDR="https://192.168.178.145:8200"
+export VAULT_CACERT="$HOME/.config/homelab-ca/ca.crt"

@@ -44,3 +44,5 @@ background-blur-radius = 40
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 theme = catppuccin-frappe.conf
+
+shell-integration-features = ssh-env,ssh-terminfo

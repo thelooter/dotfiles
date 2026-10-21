@@ -97,7 +97,7 @@ alias ccd="claude --dangerously-skip-permissions"
 
 # Commented package manager aliases (uncomment if using paru)
 # alias yay="paru"
-# alias yeet="paru -Rcs"
+ alias yeet="yay -Rcs"
 # alias gimme="paru -S"
 
 # -----------------------------------------------------------------------------

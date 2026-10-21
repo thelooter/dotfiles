@@ -70,7 +70,6 @@ local servers = {
 		},
 	},
 	ts_ls = {
-		disable_formatting = true,
 		settings = {
 			javascript = {
 				inlayHints = {
@@ -118,6 +117,9 @@ local servers = {
 	cssls = {},
 	emmet_ls = {},
 	clangd = {},
+	-- Compilation and viewing are VimTeX's job; texlab is here for completion,
+	-- references, rename and symbols.
+	texlab = {},
 }
 
 -- local lsp_signature = require "lsp_signature"
@@ -172,6 +174,21 @@ local function on_attach(client, bufnr)
 		vim.lsp.codelens.refresh()
 	end
 end
+
+-- Grammar/spell checking (LanguageTool). Restricted to TeX: the lspconfig
+-- default also attaches a JVM to markdown, gitcommit, html, ...
+-- Per-file language: `% LTeX: language=de-DE`
+servers.ltex_plus = {
+	filetypes = { "tex", "plaintex", "bib" },
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		require("ltex_extra").setup({
+			load_langs = { "en-US", "de-DE" },
+			-- Keep dictionaries global instead of dropping ltex.*.txt into every project
+			path = vim.fn.stdpath("data") .. "/ltex",
+		})
+	end,
+}
 
 local capabilities
 

@@ -3,12 +3,6 @@ local M = {}
 function M.setup()
 
   local lsp = {
-    float = {
-      focusable = true,
-      style = "minimal",
-      border = "rounded"
-    },
-
     diagnostic = {
       virtual_text = {
         spacing = 4,
@@ -46,13 +40,6 @@ function M.setup()
 
   -- diagnostic config
   vim.diagnostic.config(lsp.diagnostic)
-
-  -- Hover config
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("noice.lsp.hover").on_hover,lsp.float)
-
-  --Signature help config
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(require("noice.lsp.signature"), lsp.float)
-
 end
 
 return M

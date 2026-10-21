@@ -6,7 +6,7 @@ local M = {}
 local ensure_installed = {
   "bash", "c", "cpp", "css", "dart", "diff", "dockerfile", "git_config",
   "git_rebase", "gitcommit", "gitignore", "go", "gomod", "gosum", "gowork",
-  "html", "java", "javascript", "json", "jsonc", "lua", "luadoc", "markdown",
+  "html", "java", "javascript", "json", "lua", "luadoc", "markdown",
   "markdown_inline", "python", "query", "regex", "rust", "sql", "toml", "tsx",
   "typescript", "vim", "vimdoc", "yaml",
 }

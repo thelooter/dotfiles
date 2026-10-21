@@ -345,6 +345,11 @@ local function code_keymap()
         {"<leader>ci", "<cmd>TSLspImportAll<cr>", desc = "Import All"},
         {"<leader>ct", "<cmd>lua require('utils.test').javascript_runner()<cr>", desc = "Choose Test Runner"},
       }
+    elseif ft == "tex" or ft == "bib" then
+      -- The mappings themselves come from VimTeX (vimtex_mappings_prefix)
+      entries_n = {
+        {"<leader>x", group = "TeX"},
+      }
     elseif ft == "java" then
       -- Java has both normal and visual mode mappings for refactoring
       entries_n = {

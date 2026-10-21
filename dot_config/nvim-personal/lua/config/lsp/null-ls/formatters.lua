@@ -17,55 +17,31 @@ function M.toggle()
   end
 end
 
-function M.format()
-  if M.autoformat then
-    vim.lsp.buf.format {
-      async = true,
-    }
-  end
+-- Use null-ls when it has a formatter for the filetype, otherwise the language server
+function M.format(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  local use_nls = M.has_formatter(vim.bo[bufnr].filetype)
+  vim.lsp.buf.format({
+    bufnr = bufnr,
+    filter = function(client)
+      return (client.name == "null-ls") == use_nls
+    end,
+  })
 end
 
-function M.setup(client, buf)
-  local filetype = vim.api.nvim_get_option_value("filetype", {
-    buf = buf
-  })
+local augroup_formatting = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
-  local enable = false
-  if M.has_formatter(filetype) then
-    enable = client.name == "null-ls"
-  else
-    enable = not (client.name == "null-ls")
-  end
-
-
-  local augroup_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
-  client.server_capabilities.document_formatting = enable
-  client.server_capabilities.document_range_formatting = enable
-  if client.server_capabilities.document_formatting then
-    vim.api.nvim_clear_autocmds({
-      group = augroup_formatting,
-      buffer = buf
-    })
-
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup_formatting,
-      buffer = buf,
-      callback = function()
-        utils.info("Formatted buffer", "Formatting")
-        vim.lsp.buf.format({
-          bufnr = buf
-        })
+function M.setup(_, buf)
+  vim.api.nvim_clear_autocmds({ group = augroup_formatting, buffer = buf })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_formatting,
+    buffer = buf,
+    callback = function()
+      if M.autoformat then
+        M.format(buf)
       end
-    })
-
-    --[[    vim.cmd [[
-      augroup LspFormat
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("config.lsp.null-ls.formatters").format()
-      augroup END
-    ]]
-    --]]
-  end
+    end,
+  })
 end
 
 function M.has_formatter(filetype)

@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local fn = vim.fn
   local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
+  if not vim.uv.fs_stat(lazypath) then
     fn.system({
       "git",
       "clone",
@@ -680,10 +680,26 @@ function M.setup()
       lazy = false, -- we don't want to lazy load VimTeX
       -- tag = "v2.15", -- uncomment to pin to a specific release
       init = function()
-        -- VimTeX configuration goes here, e.g.
-        vim.g.vimtex_view_method = "zathura"
+        -- zathura_simple skips xdotool, which doesn't work on Wayland
+        vim.g.vimtex_view_method = "zathura_simple"
+        -- localleader is <Space>, so the default `<localleader>l` prefix would
+        -- collide with the LSP `<leader>l` group
+        vim.g.vimtex_mappings_prefix = "<leader>x"
+        -- Let VimTeX's buffer-local ic/ac, ]]/[[, ]m/[m win over the global
+        -- treesitter-textobjects maps in tex buffers
+        vim.g.vimtex_mappings_override_existing = 1
       end,
     },
+    -- Gilles Castel style math autosnippets (mk, dm, //, sr, ...)
+    {
+      "iurimateus/luasnip-latex-snippets.nvim",
+      ft = { "tex" },
+      dependencies = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+      opts = { allow_on_markdown = false },
+    },
+    -- Client side of ltex-plus code actions (add to dictionary, disable rule,
+    -- hide false positive). setup() is called from the ltex_plus on_attach.
+    { "barreiroleo/ltex_extra.nvim", lazy = true },
     {
       "sopa0/telescope-makefile",
     },

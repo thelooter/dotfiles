@@ -36,6 +36,7 @@ require("extra/rules/window/vesktop")
 require("extra/rules/window/keepass")
 require("extra/rules/window/toolbox")
 require("extra/rules/window/handy")
+require("extra/rules/window/zoom")
 
 -- Workspace monitor rules
 require("extra/rules/workspace")
